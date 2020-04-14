@@ -10,8 +10,8 @@
 <body>
 	<nav class="navbar navbar-light" style="background-color: #726E97;">
 
-		<a href="/" class="btn btn-info btn-lg">
-                  <span class="glyphicon glyphicon-home"> TODO List Web App Home</span>
+		<a class="btn btn-info btn-lg">
+                  <span class="glyphicon glyphicon-home" style="color:white"> TODO List Web App</span>
                 </a>
 
 		<ul class="nav nav-pills nav-fill">
