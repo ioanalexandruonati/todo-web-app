@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "todo.do")
+@WebServlet(urlPatterns = "/todo.do")
 public class TodoServlet extends HttpServlet {
 
 	private TodoService todoService = new TodoService();
@@ -18,7 +18,8 @@ public class TodoServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
+
 		request.setAttribute("todos", todoService.retrieveTodos());
-		request.getRequestDispatcher("/jsps/todo.jsp").forward(request, response);
+		request.getRequestDispatcher("todo.jsp").forward(request, response);
 	}
 }

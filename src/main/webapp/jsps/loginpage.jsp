@@ -11,6 +11,7 @@
     <title>Login Page</title>
 </head>
 <body>
+<div>${errorMessage}</div>
     <div class="login">
         <h1>Login into your account:</h1>
         <form action="login.do" method="post">

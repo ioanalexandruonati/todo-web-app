@@ -22,9 +22,7 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/jsps/loginpage.jsp").forward(request, response);
 
-
 	}
-
 	@Override
 	protected void doPost (HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
@@ -35,11 +33,11 @@ public class LoginServlet extends HttpServlet {
 
 		boolean isUserValid = loginService.isValid(email, password);
 
+
 		if (isUserValid) {
-			response.sendRedirect("/todo.do");
+			response.sendRedirect("todo.do");
 		} else
 			request.getRequestDispatcher("/jsps/loginpage.jsp").forward(request, response);
-		request.setAttribute("errorMessage", "Invalid credentials.");
-//					- add show error message functionality at the end.
+		request.setAttribute("errorMessage", "Invalid username or password. Try again");
 	}
 }
