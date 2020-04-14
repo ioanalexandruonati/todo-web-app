@@ -16,10 +16,17 @@ public class AddTodoServlet extends HttpServlet {
    private TodoService todoService = new TodoService();
 
    @Override
+   protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      request.getRequestDispatcher("/jsps/add.jsp").forward(request, response);
+
+   }
+
+   @Override
    protected void doPost (HttpServletRequest request, HttpServletResponse response)
            throws IOException, ServletException {
       String newtodo = request.getParameter("todo");
-      todoService.addTodo(new Todo(newtodo));
+      String category = request.getParameter("category");
+      todoService.addTodo(new Todo(newtodo, category));
       response.sendRedirect("listtodo.do");
    }
 }

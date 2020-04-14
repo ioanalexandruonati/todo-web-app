@@ -23,32 +23,23 @@
 			<li><a class="btn btn-info btn-lg" href="login.do">Logout</a></li>
 		</ul>
 	</nav>
-	</br>
 	<div class="container">
-		<H2>Welcome ${Email}</H2>
+		<H1>Welcome ${Email}</H1>
 		</br>
-		<p> <strong>Your todos are:</strong></p>
-		</br>
-	<table class="table table-hover table-active table-borderless">
-      <thead>
-        <tr>
-          <th scope="col">Description</th>
-          <th scope="col">Category</th>
-          <th scope="col">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-       <c:forEach items="${todos}" var="todo">
-        <tr>
-          <td>${todo.name}</td>
-          <td>${todo.category}</td>
-          <td><a class="btn btn-danger" href="delete.do?todo=${todo.name}&category=${todo.category}">Delete</a> </td>
-        </tr>
-        </c:forEach>
-      </tbody>
-    </table>
-    </br>
-        <a class="btn btn-success" href="addtodo.do">Add New Todo</a>
+        <div>
+        <p>Please add a new todo item:</p>
+        </br>
+        <form method="POST" action="addtodo.do">
+        <fieldset class="form-group">
+        			<label>Description</label> <input name="todo" type="text"
+        				class="form-control" /> <BR />
+        		</fieldset>
+        		<fieldset class="form-group">
+        			<label>Category</label> <input name="category" type="text"
+        				class="form-control" /> <BR />
+        		</fieldset>
+        		<input name="add" type="submit" class="btn btn-success" value="Submit" />
+        </form>
 	</div>
 	<nav class="navbar fixed-bottom navbar-light" style="background-color: #726E97;">
       <span class="navbar-text">
