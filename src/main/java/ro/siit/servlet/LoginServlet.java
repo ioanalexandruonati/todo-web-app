@@ -35,7 +35,8 @@ public class LoginServlet extends HttpServlet {
 
 
 		if (isUserValid) {
-			response.sendRedirect("todo.do");
+			request.getSession().setAttribute("Email", email);
+			response.sendRedirect("listtodo.do");
 		} else
 			request.getRequestDispatcher("/jsps/loginpage.jsp").forward(request, response);
 		request.setAttribute("errorMessage", "Invalid username or password. Try again");
