@@ -1,3 +1,4 @@
+
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
@@ -12,13 +13,24 @@
     <title>Login Page</title>
 </head>
 <body>
+<div class="row">
     <div class="login">
         <h1>Login into your account:</h1>
         <form action="login.do" method="post">
-            <input type="text" name="Email" placeholder="Email" required="required" />
-            <input type="password" name="Password" placeholder="Password" required="required" />
+            <input type="text" name="Email" placeholder="Email" />
+            <input type="password" name="Password" placeholder="Password" />
+            </br>
             <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
-        </form>
+            </br>
+            </br>
+			<p class="small text-center"><c:out value="${requestScope.error}"/></p>
+            </form>
+            <div style="text-align: center; border: 0px solid">
+            <button type="button" class="btn btn-light">
+            <a href="adduser">Without an account? Register here.</a>
+            </button>
+            </div>
     </div>
+</div>
 </body>
 </html>

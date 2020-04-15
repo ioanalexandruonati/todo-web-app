@@ -1,6 +1,6 @@
 package ro.siit.servlet;
 
-import ro.siit.service.LoginService;
+import ro.siit.login.CredentialsValidator;
 
 import java.io.IOException;
 
@@ -15,7 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns = "/login.do")
 public class LoginServlet extends HttpServlet {
 
-	private LoginService loginService = new LoginService();
+
+	private CredentialsValidator credentialsValidator = new CredentialsValidator();
 
 
 	@Override
@@ -27,18 +28,13 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost (HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		String email = request.getParameter("Email");
-		request.setAttribute("Email", email);
 		String password = request.getParameter("Password");
-		request.setAttribute("Password", password);
 
-		boolean isUserValid = loginService.isValid(email, password);
-
-
-		if (isUserValid) {
+		if (credentialsValidator.checkCredentials(email, password)) {
 			request.getSession().setAttribute("Email", email);
 			response.sendRedirect("listtodo.do");
 		} else
 			request.getRequestDispatcher("/jsps/loginpage.jsp").forward(request, response);
-		request.setAttribute("errorMessage", "Invalid username or password. Try again");
+		request.setAttribute("error", "Username/password combination incorrect. Please try again");
 	}
 }

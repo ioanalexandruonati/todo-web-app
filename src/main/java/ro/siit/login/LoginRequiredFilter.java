@@ -1,4 +1,4 @@
-package ro.siit.servlet;
+package ro.siit.login;
 
 import java.io.IOException;
 
