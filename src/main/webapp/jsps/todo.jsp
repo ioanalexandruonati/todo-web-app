@@ -3,9 +3,12 @@
 
 
 	</br>
-	<div class="container">
+	<div class="container-fluid">
 		<H2>Welcome ${Email}</H2>
 		</br>
+		 <div class="col-4">
+		 </div>
+		 <div class="col-8">
 		<p> <strong>Your todos are:</strong></p>
 		</br>
 	<table class="table table-hover table-active table-borderless">
