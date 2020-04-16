@@ -21,6 +21,11 @@ public class AddUserServlet extends HttpServlet {
    private UserService userService = new UserService();
 
    @Override
+   public void init () throws ServletException {
+      super.init();
+   }
+
+   @Override
    protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       request.getRequestDispatcher("/jsps/regform.jsp").forward(request, response);
 

@@ -1,28 +1,71 @@
 package ro.siit.service;
 
 import ro.siit.model.Todo;
+import ro.siit.model.User;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import java.sql.*;
+
+
 
 public class TodoService {
-   private static List<Todo> todos = new ArrayList<>();
 
-   static {
-      todos.add(new Todo("Learn Web Application", "Study"));
-      todos.add(new Todo("Learn Spring", "Study"));
-      todos.add(new Todo("Learn Spring MVC", "Study"));
+
+   Todo Todo;
+   private Connection connection;
+   private HttpServletRequest request;
+
+   User user = (User) request.getSession().getAttribute("user");
+
+
+   public TodoService () {
+      try {
+         Class.forName("org.postgresql.Driver");
+         connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/siit10?user=postgres&password=postgres");
+      } catch (ClassNotFoundException | SQLException e) {
+         e.printStackTrace();
+      }
    }
 
-   public List<Todo> retrieveTodos () {
-      return todos;
+   public void addTodoToDB (Todo todo) {
+      try {
+         PreparedStatement ps = connection.prepareStatement("INSERT INTO list (id, name, category) VALUES (?, ?, ?)");
+         ps.setObject(1, user.getId());
+         ps.setString(2, Todo.getName());
+         ps.setString(2, Todo.getCategory());
+         ps.executeUpdate();
+      } catch (SQLException e) {
+         e.printStackTrace();
+      }
    }
 
-   public void addTodo (Todo todo) {
-      todos.add(todo);
+   public Todo retrieveTodo () {
+      try {
+         PreparedStatement ps = connection.prepareStatement("SELECT * FROM list WHERE id = ?");
+         ps.setObject(1, user.getId());
+         ResultSet rs = ps.executeQuery();
+         rs.next();
+         Todo = new Todo(rs.getString("name"), rs.getString("category"));
+      } catch (SQLException e) {
+         e.printStackTrace();
+      }
+      return Todo;
    }
 
-   public void deleteTodo (Todo todo) {
-      todos.remove(todo);
+   public void deleteTodo () {
+      try {
+         PreparedStatement ps = connection.prepareStatement("DELETE * FROM list WHERE id = ?");
+         ps.setObject(1, user.getId());
+         ps.executeUpdate();
+      } catch (SQLException e) {
+         e.printStackTrace();
+      }
    }
+
+   @Override
+   protected void finalize () throws Throwable {
+      this.connection.close();
+   }
+
+
 }

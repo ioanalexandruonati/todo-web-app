@@ -13,12 +13,18 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "/delete.do")
 public class DeleteTodoServlet extends HttpServlet {
 
+
    private TodoService todoService = new TodoService();
+
+   @Override
+   public void init () throws ServletException {
+      super.init();
+   }
 
    @Override
    protected void doGet (HttpServletRequest request, HttpServletResponse response)
            throws IOException, ServletException {
-      todoService.deleteTodo(new Todo(request.getParameter("todo"), request.getParameter("category")));
+      todoService.deleteTodo();
       response.sendRedirect("listtodo.do");
    }
 }

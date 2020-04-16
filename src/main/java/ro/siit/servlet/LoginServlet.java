@@ -1,6 +1,7 @@
 package ro.siit.servlet;
 
 import ro.siit.login.CredentialsValidator;
+import ro.siit.model.User;
 
 import java.io.IOException;
 
@@ -15,9 +16,14 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns = "/login.do")
 public class LoginServlet extends HttpServlet {
 
+	private CredentialsValidator credentialsValidator;
 
-	private CredentialsValidator credentialsValidator = new CredentialsValidator();
 
+	@Override
+	public void init () throws ServletException {
+		super.init();
+		credentialsValidator = new CredentialsValidator();
+	}
 
 	@Override
 	protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,9 +35,11 @@ public class LoginServlet extends HttpServlet {
 			throws IOException, ServletException {
 		String email = request.getParameter("Email");
 		String password = request.getParameter("Password");
+		User user = new User(email, password);
 
 		if (credentialsValidator.checkCredentials(email, password)) {
 			request.getSession().setAttribute("Email", email);
+			request.getSession().setAttribute("user", user);
 			response.sendRedirect("listtodo.do");
 		} else
 			request.getRequestDispatcher("/jsps/loginpage.jsp").forward(request, response);

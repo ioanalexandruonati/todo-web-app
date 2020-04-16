@@ -115,15 +115,7 @@
 				<input type="password" class="form-control" name="Password" placeholder="Password" required="required">
 			</div>
         </div>
-		<div class="form-group">
-			<div class="input-group">
-				<span class="input-group-addon">
-					<i class="fa fa-lock"></i>
-					<i class="fa fa-check"></i>
-				</span>
-				<input type="text" class="form-control" name="confirm_password" placeholder="Confirm Password" required="required">
-			</div>
-        </div>
+
         <div style="color:red;"><c:out value="${requestScope.error}"/></div>
 		<div class="form-group">
             <button type="submit" class="btn btn-info btn-block btn-lg">Sign Up</button>
