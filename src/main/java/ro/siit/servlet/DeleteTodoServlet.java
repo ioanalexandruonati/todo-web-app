@@ -1,6 +1,7 @@
 package ro.siit.servlet;
 
 import ro.siit.model.Todo;
+import ro.siit.model.User;
 import ro.siit.service.TodoService;
 
 import javax.servlet.ServletException;
@@ -14,7 +15,7 @@ import java.io.IOException;
 public class DeleteTodoServlet extends HttpServlet {
 
 
-   private TodoService todoService = new TodoService();
+   private final TodoService todoService = new TodoService();
 
    @Override
    public void init () throws ServletException {
@@ -24,7 +25,8 @@ public class DeleteTodoServlet extends HttpServlet {
    @Override
    protected void doGet (HttpServletRequest request, HttpServletResponse response)
            throws IOException, ServletException {
-      todoService.deleteTodo();
+      User user = (User) (request.getSession().getAttribute("authenticateduser"));
+      todoService.deleteTodo(user);
       response.sendRedirect("listtodo.do");
    }
 }

@@ -3,11 +3,11 @@ package ro.siit.model;
 import java.util.UUID;
 
 public class User {
-   private UUID id;
+   private final UUID id;
    private String email;
    private String pwd;
 
-   public User (String username, String pwd) {
+   public User (UUID uuid, String username, String pwd) {
       this.id = UUID.randomUUID();
       this.email = username;
       this.pwd = pwd;

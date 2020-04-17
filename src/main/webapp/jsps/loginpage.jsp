@@ -13,9 +13,11 @@
     <title>Login Page</title>
 </head>
 <body>
+
 <div class="row">
     <div class="login">
         <h1>Login into your account:</h1>
+
         <form action="login.do" method="post">
             <input type="text" name="Email" placeholder="Email" />
             <input type="password" name="Password" placeholder="Password" />

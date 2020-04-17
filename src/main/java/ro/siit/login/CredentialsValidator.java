@@ -1,6 +1,9 @@
 package ro.siit.login;
 
+import ro.siit.model.User;
+
 import java.sql.*;
+import java.util.UUID;
 
 public class CredentialsValidator {
    private Connection connection;
@@ -14,7 +17,7 @@ public class CredentialsValidator {
       }
    }
 
-   public boolean checkCredentials (String username, String password) {
+   public User checkCredentials (String username, String password) {
 
       try {
          PreparedStatement ps = connection.prepareStatement("SELECT * FROM login WHERE email = ? AND pwd = ?");
@@ -22,11 +25,17 @@ public class CredentialsValidator {
          ps.setString(2, password);
 
          ResultSet rs = ps.executeQuery();
-         return rs.next();
+
+         if (rs.next()) {
+            return new User(UUID.fromString(rs.getObject(1).toString()),
+                    rs.getString(2), rs.getString(3));
+         } else {
+            return null;
+         }
 
       } catch (SQLException e) {
          e.printStackTrace();
       }
-      return false;
+      return null;
    }
 }

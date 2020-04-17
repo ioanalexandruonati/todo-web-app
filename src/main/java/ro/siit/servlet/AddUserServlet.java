@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.UUID;
 
 
 @WebServlet(urlPatterns = "/adduser")
@@ -17,8 +18,8 @@ public class AddUserServlet extends HttpServlet {
 
 
    User user;
-   private CredentialsValidator credentialsValidator = new CredentialsValidator();
-   private UserService userService = new UserService();
+   private final CredentialsValidator credentialsValidator = new CredentialsValidator();
+   private final UserService userService = new UserService();
 
    @Override
    public void init () throws ServletException {
@@ -37,11 +38,11 @@ public class AddUserServlet extends HttpServlet {
       String email = request.getParameter("Email");
       String pwd = request.getParameter("Password");
 
-      if (credentialsValidator.checkCredentials(email, pwd)) {
+      if (credentialsValidator != null) {
          request.setAttribute("error", "Username/password already taken. Please try logging in.");
          request.getRequestDispatcher("/jsps/loginpage.jsp").forward(request, response);
       } else
-         user = new User(email, pwd);
+         user = new User(UUID.randomUUID(), email, pwd);
       userService.addUser(user);
       request.getRequestDispatcher("/jsps/loginpage.jsp").forward(request, response);
    }

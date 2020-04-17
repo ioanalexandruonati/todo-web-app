@@ -3,7 +3,6 @@ package ro.siit.service;
 import ro.siit.model.Todo;
 import ro.siit.model.User;
 
-import javax.servlet.http.HttpServletRequest;
 import java.sql.*;
 
 
@@ -13,9 +12,6 @@ public class TodoService {
 
    Todo Todo;
    private Connection connection;
-   private HttpServletRequest request;
-
-   User user = (User) request.getSession().getAttribute("user");
 
 
    public TodoService () {
@@ -27,7 +23,7 @@ public class TodoService {
       }
    }
 
-   public void addTodoToDB (Todo todo) {
+   public void addTodoToDB (Todo todo, User user) {
       try {
          PreparedStatement ps = connection.prepareStatement("INSERT INTO list (id, name, category) VALUES (?, ?, ?)");
          ps.setObject(1, user.getId());
@@ -39,7 +35,7 @@ public class TodoService {
       }
    }
 
-   public Todo retrieveTodo () {
+   public Todo retrieveTodo (User user) {
       try {
          PreparedStatement ps = connection.prepareStatement("SELECT * FROM list WHERE id = ?");
          ps.setObject(1, user.getId());
@@ -52,7 +48,7 @@ public class TodoService {
       return Todo;
    }
 
-   public void deleteTodo () {
+   public void deleteTodo (User user) {
       try {
          PreparedStatement ps = connection.prepareStatement("DELETE * FROM list WHERE id = ?");
          ps.setObject(1, user.getId());

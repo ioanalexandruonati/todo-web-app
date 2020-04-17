@@ -1,6 +1,7 @@
 package ro.siit.servlet;
 
 import ro.siit.model.Todo;
+import ro.siit.model.User;
 import ro.siit.service.TodoService;
 
 import javax.servlet.ServletException;
@@ -16,7 +17,7 @@ import java.util.List;
 public class AddTodoServlet extends HttpServlet {
 
 
-   private TodoService todoService = new TodoService();
+   private final TodoService todoService = new TodoService();
 
    @Override
    public void init () throws ServletException {
@@ -34,8 +35,9 @@ public class AddTodoServlet extends HttpServlet {
            throws IOException, ServletException {
       String newtodo = request.getParameter("todo");
       String category = request.getParameter("category");
+      User user = (User) (request.getSession().getAttribute("authenticateduser"));
       Todo todo = new Todo(newtodo, category);
-      todoService.addTodoToDB(todo);
+      todoService.addTodoToDB(todo, user);
       response.sendRedirect("listtodo.do");
    }
 }

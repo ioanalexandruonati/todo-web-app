@@ -1,5 +1,6 @@
 package ro.siit.servlet;
 
+import ro.siit.model.User;
 import ro.siit.service.TodoService;
 
 import java.io.IOException;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ListTodoServlet extends HttpServlet {
 
 
-	private TodoService todoService = new TodoService();
+	private final TodoService todoService = new TodoService();
 
 	@Override
 	public void init () throws ServletException {
@@ -25,8 +26,8 @@ public class ListTodoServlet extends HttpServlet {
 	@Override
 	protected void doGet (HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-
-		request.setAttribute("todos", todoService.retrieveTodo());
+		User user = (User) (request.getSession().getAttribute("authenticateduser"));
+		request.setAttribute("todos", todoService.retrieveTodo(user));
 		request.getRequestDispatcher("/jsps/todo.jsp").forward(request, response);
 	}
 }
