@@ -17,8 +17,8 @@ ALTER TABLE public.login
 CREATE TABLE public.list
 (
     id uuid NOT NULL,
-    name character varying(10000) COLLATE pg_catalog."default",
-    category character varying(100) COLLATE pg_catalog."default",
+    name text COLLATE pg_catalog."default",
+    category text COLLATE pg_catalog."default",
     CONSTRAINT list_pkey PRIMARY KEY (id),
     CONSTRAINT list_id_fkey FOREIGN KEY (id)
         REFERENCES public.login (id) MATCH SIMPLE
