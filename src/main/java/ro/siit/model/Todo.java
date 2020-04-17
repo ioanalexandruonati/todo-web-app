@@ -5,36 +5,36 @@ import java.util.Objects;
 public class Todo {
    private String category;
 
-   public Todo (String name, String category) {
-      super();
-      this.name = name;
-      this.category = category;
-   }
+   private String description;
 
-   @Override
-   public String toString () {
-      return "Todo{" +
-              "name='" + name + '\'' +
-              ", category='" + category + '\'' +
-              '}';
+   public Todo (String description, String category) {
+      super();
+      this.description = description;
+      this.category = category;
    }
 
    public String getCategory () {
       return category;
    }
 
-   private String name;
+   @Override
+   public String toString () {
+      return "Todo{" +
+              "name='" + description + '\'' +
+              ", category='" + category + '\'' +
+              '}';
+   }
 
    public void setCategory (String category) {
       this.category = category;
    }
 
-   public String getName () {
-      return name;
+   public String getDescription () {
+      return description;
    }
 
-   public void setName (String name) {
-      this.name = name;
+   public void setDescription (String name) {
+      this.description = name;
    }
 
    @Override
@@ -42,11 +42,11 @@ public class Todo {
       if (this == o) return true;
       if (! (o instanceof Todo)) return false;
       Todo todo = (Todo) o;
-      return getName().equals(todo.getName());
+      return getDescription().equals(todo.getDescription());
    }
 
    @Override
    public int hashCode () {
-      return Objects.hash(getName());
+      return Objects.hash(getDescription());
    }
 }

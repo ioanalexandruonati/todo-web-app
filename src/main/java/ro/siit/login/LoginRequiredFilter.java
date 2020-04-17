@@ -1,5 +1,7 @@
 package ro.siit.login;
 
+import ro.siit.model.User;
+
 import java.io.IOException;
 
 import javax.servlet.Filter;
@@ -26,9 +28,9 @@ public class LoginRequiredFilter implements Filter {
                          ServletResponse servletResponse, FilterChain chain)
            throws IOException, ServletException {
       HttpServletRequest request = (HttpServletRequest) servletRequest;
-      Object authenticated = request.getSession().getAttribute("authenticatedUser");
+      User userAuthenticated = (User) (request.getSession().getAttribute("authenticatedUser"));
 
-      if (authenticated != null) {
+      if (userAuthenticated != null) {
          chain.doFilter(servletRequest, servletResponse);
       } else {
          request.getRequestDispatcher("/login.do").forward(servletRequest,

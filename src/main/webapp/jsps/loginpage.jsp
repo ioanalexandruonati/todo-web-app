@@ -19,13 +19,15 @@
         <h1>Login into your account:</h1>
 
         <form action="login.do" method="post">
+            <div class="alert alert-danger" style="display: <c:out value="${requestScope.error}"/>">
+            <c:out value="${requestScope.error}"/>
+            </div>
             <input type="text" name="Email" placeholder="Email" />
             <input type="password" name="Password" placeholder="Password" />
             </br>
             <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
             </br>
             </br>
-			<p class="small text-center"><c:out value="${requestScope.error}"/></p>
             </form>
             <div style="text-align: center; border: 0px solid">
             <button type="button" class="btn btn-light">

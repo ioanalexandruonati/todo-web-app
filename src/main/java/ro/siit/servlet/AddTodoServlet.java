@@ -33,11 +33,10 @@ public class AddTodoServlet extends HttpServlet {
    @Override
    protected void doPost (HttpServletRequest request, HttpServletResponse response)
            throws IOException, ServletException {
-      String newtodo = request.getParameter("todo");
+      User user = (User) (request.getSession().getAttribute("authenticatedUser"));
+      String description = request.getParameter("description");
       String category = request.getParameter("category");
-      User user = (User) (request.getSession().getAttribute("authenticateduser"));
-      Todo todo = new Todo(newtodo, category);
-      todoService.addTodoToDB(todo, user);
+      todoService.addTodoToDB(new Todo(description, category), user);
       response.sendRedirect("listtodo.do");
    }
 }

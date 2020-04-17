@@ -26,8 +26,8 @@ public class ListTodoServlet extends HttpServlet {
 	@Override
 	protected void doGet (HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		User user = (User) (request.getSession().getAttribute("authenticateduser"));
-		request.setAttribute("todos", todoService.retrieveTodo(user));
+		User user = (User) (request.getSession().getAttribute("authenticatedUser"));
+		request.setAttribute("todos", todoService.retrieveTodos(user));
 		request.getRequestDispatcher("/jsps/todo.jsp").forward(request, response);
 	}
 }

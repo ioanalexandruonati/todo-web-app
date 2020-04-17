@@ -102,7 +102,9 @@
 <div class="signup-form">
     <form action="adduser" method="post">
 		<h2>Create Account</h2>
-		<p class="lead">It's free and hardly takes more than 30 seconds.</p>
+			<div class="alert alert-danger" style="display: <c:out value="${requestScope.error}"/>" id="errors">
+                            <c:out value="${requestScope.error}"/>
+            </div>
         <div class="form-group">
 			<div class="input-group">
 				<span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
@@ -113,7 +115,8 @@
 			<div class="input-group">
 				<span class="input-group-addon"><i class="fa fa-lock"></i></span>
 				<input type="password" class="form-control" name="Password" placeholder="Password" required="required">
-				<input type="password" class="form-control" name="Password" placeholder="Password" required="required">
+				</br>
+				<input type="password" class="form-control" name="ConfirmPassword" placeholder="Confirm Password" required="required">
 			</div>
         </div>
 

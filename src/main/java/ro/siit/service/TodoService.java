@@ -4,15 +4,15 @@ import ro.siit.model.Todo;
 import ro.siit.model.User;
 
 import java.sql.*;
-
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class TodoService {
 
+   private static final List<Todo> todos = new ArrayList<>();
 
-   Todo Todo;
    private Connection connection;
-
 
    public TodoService () {
       try {
@@ -27,25 +27,26 @@ public class TodoService {
       try {
          PreparedStatement ps = connection.prepareStatement("INSERT INTO list (id, name, category) VALUES (?, ?, ?)");
          ps.setObject(1, user.getId());
-         ps.setString(2, Todo.getName());
-         ps.setString(2, Todo.getCategory());
+         ps.setString(2, todo.getDescription());
+         ps.setString(2, todo.getCategory());
          ps.executeUpdate();
       } catch (SQLException e) {
          e.printStackTrace();
       }
    }
 
-   public Todo retrieveTodo (User user) {
+   public List<Todo> retrieveTodos (User user) {
       try {
-         PreparedStatement ps = connection.prepareStatement("SELECT * FROM list WHERE id = ?");
+         PreparedStatement ps = connection.prepareStatement("SELECT name, category FROM list WHERE id = ?");
          ps.setObject(1, user.getId());
          ResultSet rs = ps.executeQuery();
          rs.next();
-         Todo = new Todo(rs.getString("name"), rs.getString("category"));
+         Todo todo = new Todo(rs.getString("name"), rs.getString("category"));
+         todos.add(todo);
       } catch (SQLException e) {
          e.printStackTrace();
       }
-      return Todo;
+      return todos;
    }
 
    public void deleteTodo (User user) {

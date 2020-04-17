@@ -20,7 +20,7 @@ public class CredentialsValidator {
    public User checkCredentials (String username, String password) {
 
       try {
-         PreparedStatement ps = connection.prepareStatement("SELECT * FROM login WHERE email = ? AND pwd = ?");
+         PreparedStatement ps = connection.prepareStatement("SELECT id, email, pwd FROM login WHERE email = ? AND pwd = ?");
          ps.setString(1, username);
          ps.setString(2, password);
 

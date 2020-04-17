@@ -3,14 +3,15 @@
 
 
 	<div class="container">
-		<H1>Welcome ${Email}</H1>
+	</br>
+		<H1>Welcome <c:out value= "${Email}"/></H1>
 		</br>
         <div>
         <p>Please add a new todo item:</p>
         </br>
         <form method="POST" action="addtodo.do">
         <fieldset class="form-group">
-        			<label>Description</label> <input name="todo" type="text"
+        			<label>Description</label> <input name="description" type="text"
         				class="form-control" /> <BR />
         		</fieldset>
         		<fieldset class="form-group">
