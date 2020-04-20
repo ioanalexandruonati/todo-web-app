@@ -31,7 +31,7 @@ In the back, the credentials (email, password) are checked against the existing 
 After the step above, when the user gets redirected to the hompeage, the user can vizualise the todo items associated with its uuid from the table list from the DB, the user can add or delete a todo list item.
 
 Listing Todo:
-Using the uuid of the particular user that is on session (is logged in), when the user is redirected to the hompage, the items from the list table in the DB, that are associated with its uuid (the uuid of the user on session matches the uuid in the id column in the list table), are displayed.
+Using the uuid of the particular user that is on session (is logged in), when the user is redirected to the hompage, the items from the list table in the DB, that are associated with its uuid (the uuid of the user on session matches the uuid in the id column in the list table), are querried and for each entry where the uuid in the id column, matches the uuid of the user on session, a Todo object is created (that has 2 String type fields: name & category) and then each one of the Todo objects is added to a List<Todo>. This list is iterated through and each Todo item is displayed.
 
 Adding Todo:
 Using the uuid of the particular user that is on session (is logged in), when the user clicks on the Add Todo button, and after the user inputs the name of the item and category, the app adds the 2 strings in the columns name & category and the user uuid to the id column in the list table.
