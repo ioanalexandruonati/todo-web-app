@@ -1,7 +1,5 @@
 package ro.siit.servlet;
 
-import ro.siit.model.Todo;
-import ro.siit.model.User;
 import ro.siit.service.TodoService;
 
 import javax.servlet.ServletException;
@@ -10,8 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.UUID;
 
 @WebServlet(urlPatterns = "/addtodo.do")
 public class AddTodoServlet extends HttpServlet {
@@ -33,10 +30,11 @@ public class AddTodoServlet extends HttpServlet {
    @Override
    protected void doPost (HttpServletRequest request, HttpServletResponse response)
            throws IOException, ServletException {
-      User user = (User) (request.getSession().getAttribute("authenticatedUser"));
+//      User user = (User) (request.getSession().getAttribute("authenticatedUser"));
+      UUID uuid = (UUID) (request.getSession().getAttribute("uuid"));
       String description = request.getParameter("description");
       String category = request.getParameter("category");
-      todoService.addTodoToDB(new Todo(description, category), user.getId());
+      todoService.addTodoToDB(description, category, uuid);
       response.sendRedirect("listtodo.do");
    }
 }

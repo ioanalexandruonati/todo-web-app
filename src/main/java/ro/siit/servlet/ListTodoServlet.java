@@ -4,6 +4,8 @@ import ro.siit.model.User;
 import ro.siit.service.TodoService;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,8 +28,13 @@ public class ListTodoServlet extends HttpServlet {
 	@Override
 	protected void doGet (HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		User user = (User) (request.getSession().getAttribute("authenticatedUser"));
-		request.setAttribute("todos", todoService.retrieveTodos(user.getId()));
-		request.getRequestDispatcher("/jsps/todo.jsp").forward(request, response);
-	}
+//		User user = (User) (request.getSession().getAttribute("authenticatedUser"));
+           UUID uuid = (UUID) (request.getSession().getAttribute("uuid"));
+           try {
+              request.setAttribute("todos", todoService.retrieveTodos(uuid));
+           } catch (SQLException throwables) {
+              throwables.printStackTrace();
+           }
+           request.getRequestDispatcher("/jsps/todo.jsp").forward(request, response);
+        }
 }

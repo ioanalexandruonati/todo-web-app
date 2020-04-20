@@ -17,13 +17,6 @@ public class Todo {
       return category;
    }
 
-   @Override
-   public String toString () {
-      return "Todo{" +
-              "name='" + description + '\'' +
-              ", category='" + category + '\'' +
-              '}';
-   }
 
    public void setCategory (String category) {
       this.category = category;

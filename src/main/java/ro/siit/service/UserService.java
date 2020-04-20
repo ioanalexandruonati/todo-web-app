@@ -1,5 +1,6 @@
 package ro.siit.service;
 
+import ro.siit.model.Todo;
 import ro.siit.model.User;
 
 import java.sql.*;
@@ -30,6 +31,21 @@ public class UserService {
       } catch (SQLException e) {
          e.printStackTrace();
       }
+   }
+
+   public UUID getUserIDFromDB (String email) {
+      String uuid = null;
+      try {
+         PreparedStatement ps = connection.prepareStatement("SELECT id FROM login WHERE email=?");
+         ps.setString(1, email);
+         ResultSet rs = ps.executeQuery();
+         if (rs.next()) {
+            uuid = rs.getString("id");
+         }
+      } catch (SQLException throwables) {
+         throwables.printStackTrace();
+      }
+      return UUID.fromString(uuid);
    }
 
    @Override

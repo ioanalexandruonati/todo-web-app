@@ -4,7 +4,7 @@
 
 	</br>
 	<div class="container-fluid">
-		<H2>Welcome ${Email}</H2>
+		<h2>Welcome ${Email}</h2>
 		</br>
 		 <div class="col-4">
 		 </div>
@@ -22,9 +22,9 @@
       <tbody>
        <c:forEach items="${todos}" var="todo">
         <tr>
-          <td>${todo.name}</td>
+          <td>${todo.description}</td>
           <td>${todo.category}</td>
-          <td><a class="btn btn-danger" href="delete.do?todo=${todo.name}&category=${todo.category}">Delete</a> </td>
+          <td><a class="btn btn-danger" href="delete.do?todo=${todo.description}&category=${todo.category}">Delete</a> </td>
         </tr>
         </c:forEach>
       </tbody>

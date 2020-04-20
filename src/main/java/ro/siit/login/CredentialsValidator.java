@@ -27,7 +27,7 @@ public class CredentialsValidator {
          ResultSet rs = ps.executeQuery();
 
          if (rs.next()) {
-            return new User(UUID.fromString(rs.getObject(1).toString()),
+            return new User(UUID.fromString(String.valueOf(rs.getObject(1))),
                     rs.getString(2), rs.getString(3));
          } else {
             return null;

@@ -1,7 +1,9 @@
 package ro.siit.servlet;
 
+import org.apache.logging.log4j.core.config.plugins.convert.TypeConverters;
 import ro.siit.login.CredentialsValidator;
 import ro.siit.model.User;
+import ro.siit.service.UserService;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -18,11 +20,14 @@ public class LoginServlet extends HttpServlet {
 
 	private CredentialsValidator credentialsValidator;
 
+	private UserService userService;
+
 
 	@Override
 	public void init () throws ServletException {
 		super.init();
 		credentialsValidator = new CredentialsValidator();
+		userService = new UserService();
 	}
 
 	@Override
@@ -38,8 +43,12 @@ public class LoginServlet extends HttpServlet {
 
 		User authenticatedUser = credentialsValidator.checkCredentials(email, password);
 
+		UUID uuidOfLoggedUser = userService.getUserIDFromDB(email);
+
 		if (authenticatedUser != null) {
+			request.getSession().getAttribute("Email");
 			request.getSession().setAttribute("authenticatedUser", authenticatedUser);
+			request.getSession().setAttribute("uuid", uuidOfLoggedUser);
 			response.sendRedirect("listtodo.do");
 
 		} else {

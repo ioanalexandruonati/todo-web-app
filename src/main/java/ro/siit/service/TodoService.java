@@ -1,7 +1,6 @@
 package ro.siit.service;
 
 import ro.siit.model.Todo;
-import ro.siit.model.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -24,35 +23,38 @@ public class TodoService {
       }
    }
 
-   public void addTodoToDB (Todo todo, UUID uuid) {
+   public void addTodoToDB (String name, String category, UUID uuid) {
       try {
          PreparedStatement ps = connection.prepareStatement("INSERT INTO list (uuid, name, category) VALUES (?, ?, ?)");
          ps.setObject(1, uuid);
-         ps.setString(2, todo.getDescription());
-         ps.setString(2, todo.getCategory());
+         ps.setString(2, name);
+         ps.setString(3, category);
          ps.executeUpdate();
       } catch (SQLException e) {
          e.printStackTrace();
       }
    }
 
-   public List<Todo> retrieveTodos (UUID uuid) {
+   public List<Todo> retrieveTodos (UUID uuid) throws SQLException {
       try {
          PreparedStatement ps = connection.prepareStatement("SELECT name, category FROM list WHERE uuid = ?");
          ps.setObject(1, uuid);
          ResultSet rs = ps.executeQuery();
-         rs.next();
-         Todo todo = new Todo(rs.getString("name"), rs.getString("category"));
-         todos.add(todo);
-      } catch (SQLException e) {
-         e.printStackTrace();
+         if (rs.next()) {
+            Todo todo = new Todo(rs.getString("name"), rs.getString("category"));
+            todos.add(todo);
+         } else {
+            return null;
+         }
+      } catch (SQLException throwables) {
+         throwables.printStackTrace();
       }
       return todos;
    }
 
    public void deleteTodo (UUID uuid) {
       try {
-         PreparedStatement ps = connection.prepareStatement("DELETE * FROM list WHERE uuid = ?");
+         PreparedStatement ps = connection.prepareStatement("DELETE FROM list WHERE uuid = ?");
          ps.setObject(1, uuid);
          ps.executeUpdate();
       } catch (SQLException e) {
@@ -60,7 +62,6 @@ public class TodoService {
       }
    }
 
-   @Override
    protected void finalize () throws Throwable {
       this.connection.close();
    }
