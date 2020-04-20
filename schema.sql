@@ -1,3 +1,34 @@
+-- Table: public.list
+
+-- DROP TABLE public.list;
+
+CREATE TABLE public.list
+(
+    id uuid NOT NULL,
+    name text COLLATE pg_catalog."default" NOT NULL,
+    category text COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT id PRIMARY KEY (id),
+    CONSTRAINT "id user = id user" FOREIGN KEY (id)
+        REFERENCES public.login (id) MATCH FULL
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.list
+    OWNER to postgres;
+
+
+
+
+
+-- Table: public.login
+
+-- DROP TABLE public.login;
+
 CREATE TABLE public.login
 (
     id uuid NOT NULL,
@@ -11,24 +42,4 @@ WITH (
 TABLESPACE pg_default;
 
 ALTER TABLE public.login
-    OWNER to postgres;
-
-
-CREATE TABLE public.list
-(
-    id uuid NOT NULL,
-    name character varying(10000) COLLATE pg_catalog."default",
-    category character varying(100) COLLATE pg_catalog."default",
-    CONSTRAINT list_pkey PRIMARY KEY (id),
-    CONSTRAINT list_id_fkey FOREIGN KEY (id)
-        REFERENCES public.login (id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE CASCADE
-)
-WITH (
-    OIDS = FALSE
-)
-TABLESPACE pg_default;
-
-ALTER TABLE public.list
     OWNER to postgres;
