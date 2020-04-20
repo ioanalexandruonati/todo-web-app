@@ -6,6 +6,7 @@ import ro.siit.model.User;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 public class TodoService {
@@ -23,10 +24,10 @@ public class TodoService {
       }
    }
 
-   public void addTodoToDB (Todo todo, User user) {
+   public void addTodoToDB (Todo todo, UUID uuid) {
       try {
-         PreparedStatement ps = connection.prepareStatement("INSERT INTO list (id, name, category) VALUES (?, ?, ?)");
-         ps.setObject(1, user.getId());
+         PreparedStatement ps = connection.prepareStatement("INSERT INTO list (uuid, name, category) VALUES (?, ?, ?)");
+         ps.setObject(1, uuid);
          ps.setString(2, todo.getDescription());
          ps.setString(2, todo.getCategory());
          ps.executeUpdate();
@@ -35,10 +36,10 @@ public class TodoService {
       }
    }
 
-   public List<Todo> retrieveTodos (User user) {
+   public List<Todo> retrieveTodos (UUID uuid) {
       try {
-         PreparedStatement ps = connection.prepareStatement("SELECT name, category FROM list WHERE id = ?");
-         ps.setObject(1, user.getId());
+         PreparedStatement ps = connection.prepareStatement("SELECT name, category FROM list WHERE uuid = ?");
+         ps.setObject(1, uuid);
          ResultSet rs = ps.executeQuery();
          rs.next();
          Todo todo = new Todo(rs.getString("name"), rs.getString("category"));
@@ -49,10 +50,10 @@ public class TodoService {
       return todos;
    }
 
-   public void deleteTodo (User user) {
+   public void deleteTodo (UUID uuid) {
       try {
-         PreparedStatement ps = connection.prepareStatement("DELETE * FROM list WHERE id = ?");
-         ps.setObject(1, user.getId());
+         PreparedStatement ps = connection.prepareStatement("DELETE * FROM list WHERE uuid = ?");
+         ps.setObject(1, uuid);
          ps.executeUpdate();
       } catch (SQLException e) {
          e.printStackTrace();

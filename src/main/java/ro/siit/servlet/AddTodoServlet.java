@@ -36,7 +36,7 @@ public class AddTodoServlet extends HttpServlet {
       User user = (User) (request.getSession().getAttribute("authenticatedUser"));
       String description = request.getParameter("description");
       String category = request.getParameter("category");
-      todoService.addTodoToDB(new Todo(description, category), user);
+      todoService.addTodoToDB(new Todo(description, category), user.getId());
       response.sendRedirect("listtodo.do");
    }
 }
