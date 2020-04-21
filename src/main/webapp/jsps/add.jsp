@@ -11,13 +11,18 @@
         </br>
         <form method="POST" action="addtodo.do">
         <fieldset class="form-group">
-        			<label>Description</label> <input name="description" type="text"
+        			<label>Description:</label> <input name="description" type="text"
         				class="form-control" /> <BR />
         		</fieldset>
         		<fieldset class="form-group">
-        			<label>Category</label> <input name="category" type="text"
+        			<label>Category:</label> <input name="category" type="text"
         				class="form-control" /> <BR />
         		</fieldset>
+				<fieldset class="form-group">
+                 <label>Due date:</label> <input name="date" type="text"
+                 class="form-control" /> <BR />
+                 </fieldset>
+				</br>
         		<input name="add" type="submit" class="btn btn-info" value="Submit" />
         </form>
 	</div>

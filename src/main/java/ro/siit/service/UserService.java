@@ -41,12 +41,14 @@ public class UserService {
          ResultSet rs = ps.executeQuery();
          if (rs.next()) {
             uuid = rs.getString("id");
+            return UUID.fromString(uuid);
          }
       } catch (SQLException throwables) {
          throwables.printStackTrace();
       }
-      return UUID.fromString(uuid);
+      return null;
    }
+
 
    @Override
    protected void finalize () throws Throwable {

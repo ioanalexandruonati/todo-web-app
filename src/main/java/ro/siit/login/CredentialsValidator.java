@@ -29,10 +29,7 @@ public class CredentialsValidator {
          if (rs.next()) {
             return new User(UUID.fromString(String.valueOf(rs.getObject(1))),
                     rs.getString(2), rs.getString(3));
-         } else {
-            return null;
          }
-
       } catch (SQLException e) {
          e.printStackTrace();
       }

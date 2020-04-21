@@ -1,7 +1,5 @@
-package ro.siit.servlet;
+package ro.siit.login;
 
-import org.apache.logging.log4j.core.config.plugins.convert.TypeConverters;
-import ro.siit.login.CredentialsValidator;
 import ro.siit.model.User;
 import ro.siit.service.UserService;
 
@@ -38,22 +36,22 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doPost (HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		String email = request.getParameter("Email");
-		String password = request.getParameter("Password");
+           String email = request.getParameter("Email");
+           String password = request.getParameter("Password");
 
-		User authenticatedUser = credentialsValidator.checkCredentials(email, password);
+           User authenticatedUser = credentialsValidator.checkCredentials(email, password);
 
-		UUID uuidOfLoggedUser = userService.getUserIDFromDB(email);
+           UUID uuidOfLoggedUser = userService.getUserIDFromDB(email);
 
-		if (authenticatedUser != null) {
-			request.getSession().getAttribute("Email");
-			request.getSession().setAttribute("authenticatedUser", authenticatedUser);
-			request.getSession().setAttribute("uuid", uuidOfLoggedUser);
-			response.sendRedirect("listtodo.do");
+           if (authenticatedUser != null && uuidOfLoggedUser != null) {
+              request.getSession().getAttribute("Email");
+              request.getSession().setAttribute("authenticatedUser", authenticatedUser);
+              request.getSession().setAttribute("uuid", uuidOfLoggedUser);
+              response.sendRedirect("listtodo.do");
 
-		} else {
-			request.getRequestDispatcher("/jsps/loginpage.jsp").forward(request, response);
-			request.setAttribute("error", "Username/password combination incorrect. Please try again");
-		}
-	}
+           } else {
+              request.getRequestDispatcher("/jsps/loginpage.jsp").forward(request, response);
+              request.setAttribute("error", "Username/password combination incorrect or user does not exist. Please try again or sign up.");
+           }
+        }
 }

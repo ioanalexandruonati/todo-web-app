@@ -102,9 +102,6 @@
 <div class="signup-form">
     <form action="adduser" method="post">
 		<h2>Create Account</h2>
-			<div class="alert alert-danger" style="display: <c:out value="${requestScope.error}"/>" id="errors">
-                            <c:out value="${requestScope.error}"/>
-            </div>
         <div class="form-group">
 			<div class="input-group">
 				<span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
@@ -119,13 +116,6 @@
 				<input type="password" class="form-control" name="ConfirmPassword" placeholder="Confirm Password" required="required">
 			</div>
         </div>
-
-        <div style="color:red;"><c:out value="${requestScope.error}"/></div>
-		<div class="form-group">
-            <button type="submit" class="btn btn-info btn-block btn-lg">Sign Up</button>
-        </div>
-        <p class="small text-center"><c:out value="${requestScope.error}"/></p>
-		<!-- <p class="small text-center">By clicking the Sign Up button, you agree to our <br><a href="#">Terms &amp; Conditions</a>, and <a href="#">Privacy Policy</a>.</p>  -->
     </form>
 	<div class="text-center">Already have an account? <a href="login.do">Login here</a>.</div>
 </div>

@@ -28,7 +28,6 @@ public class ListTodoServlet extends HttpServlet {
 	@Override
 	protected void doGet (HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-//		User user = (User) (request.getSession().getAttribute("authenticatedUser"));
            UUID uuid = (UUID) (request.getSession().getAttribute("uuid"));
            try {
               request.setAttribute("todos", todoService.retrieveTodos(uuid));

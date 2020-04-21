@@ -1,4 +1,4 @@
-package ro.siit.servlet;
+package ro.siit.user_actions;
 
 import ro.siit.login.CredentialsValidator;
 import ro.siit.model.User;
@@ -37,13 +37,16 @@ public class AddUserServlet extends HttpServlet {
            throws IOException, ServletException {
       String email = request.getParameter("Email");
       String pwd = request.getParameter("Password");
+      String pwdCheckIfIdentical = request.getParameter("ConfirmPassword");
 
       if (credentialsValidator != null) {
-         request.setAttribute("error", "Username/password already taken. Please try logging in.");
          request.getRequestDispatcher("/jsps/loginpage.jsp").forward(request, response);
-      } else
+         request.setAttribute("error", "Username/password already taken. Please try logging in.");
+      } else if (pwd == pwdCheckIfIdentical) {
          user = new User(UUID.randomUUID(), email, pwd);
-      userService.addUser(user);
-      request.getRequestDispatcher("/jsps/loginpage.jsp").forward(request, response);
+         userService.addUser(user);
+         request.getRequestDispatcher("/jsps/loginpage.jsp").forward(request, response);
+         request.setAttribute("error", "Account created. Please log in.");
+      }
    }
 }

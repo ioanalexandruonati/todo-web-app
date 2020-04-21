@@ -7,10 +7,25 @@ public class Todo {
 
    private String description;
 
-   public Todo (String description, String category) {
+   private final String date;
+
+   private final Integer idVaueOfTodo;
+
+
+   public Todo (Integer idVaueOfTodo, String description, String category, String date) {
       super();
       this.description = description;
       this.category = category;
+      this.date = date;
+      this.idVaueOfTodo = idVaueOfTodo;
+   }
+
+   public Integer getIdVaueOfTodo () {
+      return idVaueOfTodo;
+   }
+
+   public String getDate () {
+      return date;
    }
 
    public String getCategory () {
