@@ -1,7 +1,6 @@
 package ro.siit.service;
 
 import ro.siit.model.Todo;
-import ro.siit.model.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -58,6 +57,20 @@ public class TodoService {
          PreparedStatement ps = connection.prepareStatement("DELETE FROM list WHERE id = ? AND uuid=?");
          ps.setObject(1, idValueOfTodo);
          ps.setObject(2, uuid);
+         ps.executeUpdate();
+      } catch (SQLException e) {
+         e.printStackTrace();
+      }
+   }
+
+   public void editTodo (String description, String category, String date, int id, UUID uuid) {
+      try {
+         PreparedStatement ps = connection.prepareStatement("UPDATE list SET name = ?, category = ?, date = ? WHERE id = ? AND uuid = ?");
+         ps.setString(1, description);
+         ps.setString(2, category);
+         ps.setString(3, date);
+         ps.setInt(4, id);
+         ps.setObject(5, uuid);
          ps.executeUpdate();
       } catch (SQLException e) {
          e.printStackTrace();

@@ -1,7 +1,6 @@
 package ro.siit.servlet;
 
 import ro.siit.model.Todo;
-import ro.siit.model.User;
 import ro.siit.service.TodoService;
 
 import javax.servlet.ServletException;
@@ -33,12 +32,15 @@ public class DeleteTodoServlet extends HttpServlet {
          List<Todo> todoList = todoService.retrieveTodos(uuid);
          for (Todo todo : todoList
          ) {
-            int idValueOfTodo = todo.getIdVaueOfTodo();
+            int idValueOfTodo = todo.getIdOfTodo();
             todoService.deleteTodo(uuid, idValueOfTodo);
             response.sendRedirect("listtodo.do");
+            return;
          }
       } catch (SQLException throwables) {
          throwables.printStackTrace();
       }
    }
+
+
 }

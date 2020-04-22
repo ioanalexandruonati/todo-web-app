@@ -49,6 +49,37 @@ public class UserService {
       return null;
    }
 
+   public void deleteUser (String Email) {
+      try {
+         PreparedStatement ps = connection.prepareStatement("DELETE FROM login WHERE email = ?");
+         ps.setObject(1, Email);
+         ps.executeUpdate();
+      } catch (SQLException e) {
+         e.printStackTrace();
+      }
+   }
+
+   public void updateEmail (UUID uuid, String Email) {
+      try {
+         PreparedStatement ps = connection.prepareStatement("UPDATE login SET email = ? WHERE id = ?");
+         ps.setString(1, Email);
+         ps.setObject(2, uuid);
+         ps.executeUpdate();
+      } catch (SQLException e) {
+         e.printStackTrace();
+      }
+   }
+
+   public void updatePassword (UUID uuid, String password) {
+      try {
+         PreparedStatement ps = connection.prepareStatement("UPDATE login SET pwd = ? WHERE id = ?");
+         ps.setString(1, password);
+         ps.setObject(2, uuid);
+         ps.executeUpdate();
+      } catch (SQLException e) {
+         e.printStackTrace();
+      }
+   }
 
    @Override
    protected void finalize () throws Throwable {

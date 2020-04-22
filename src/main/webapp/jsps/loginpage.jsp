@@ -1,4 +1,7 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false" %>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" type="text/css" href="loginpage.css">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/resources/loginpage.css' />"/>
 
     <title>Login Page</title>
 </head>
@@ -30,8 +33,8 @@
                 </br>
                 </br>
                 <div class="row">
-                			<div class="alert alert-danger alert-dismissible fade show" style="display:block" name="error">
-                			${error}
+                <div class="alert alert-danger alert-dismissible fade show" style="display:block" name="error">
+                			 <c:out value = "${error}"/>
                 </div>
                 </div>
             </div>

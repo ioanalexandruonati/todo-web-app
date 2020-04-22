@@ -1,6 +1,7 @@
 package ro.siit.model;
 
 import java.util.Objects;
+import java.util.UUID;
 
 public class Todo {
    private String category;
@@ -9,19 +10,19 @@ public class Todo {
 
    private final String date;
 
-   private final Integer idVaueOfTodo;
+   private final Integer idOfTodo;
 
 
-   public Todo (Integer idVaueOfTodo, String description, String category, String date) {
+   public Todo (int idOfTodo, String description, String category, String date) {
       super();
       this.description = description;
       this.category = category;
       this.date = date;
-      this.idVaueOfTodo = idVaueOfTodo;
+      this.idOfTodo = idOfTodo;
    }
 
-   public Integer getIdVaueOfTodo () {
-      return idVaueOfTodo;
+   public Integer getIdOfTodo () {
+      return idOfTodo;
    }
 
    public String getDate () {

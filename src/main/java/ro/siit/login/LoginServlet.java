@@ -44,10 +44,10 @@ public class LoginServlet extends HttpServlet {
            UUID uuidOfLoggedUser = userService.getUserIDFromDB(email);
 
            if (authenticatedUser != null && uuidOfLoggedUser != null) {
-              request.getSession().getAttribute("Email");
-              request.getSession().setAttribute("authenticatedUser", authenticatedUser);
-              request.getSession().setAttribute("uuid", uuidOfLoggedUser);
-              response.sendRedirect("listtodo.do");
+              request.getSession().setAttribute("Email", email);
+		   request.getSession().setAttribute("authenticatedUser", authenticatedUser);
+		   request.getSession().setAttribute("uuid", uuidOfLoggedUser);
+		   response.sendRedirect("todo.do");
 
            } else {
               request.getRequestDispatcher("/jsps/loginpage.jsp").forward(request, response);
