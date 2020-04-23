@@ -23,13 +23,14 @@ public class TodoService {
       }
    }
 
-   public void addTodoToDB (String name, String category, UUID uuid, String date) {
+   public void addTodoToDB (String name, String category, UUID uuid, String date, String priority) {
       try {
-         PreparedStatement ps = connection.prepareStatement("INSERT INTO list (uuid, name, category, date) VALUES (?, ?, ?, ?)");
+         PreparedStatement ps = connection.prepareStatement("INSERT INTO list (uuid, name, category, date, priority) VALUES (?, ?, ?, ?, ?)");
          ps.setObject(1, uuid);
          ps.setString(2, name);
          ps.setString(3, category);
          ps.setString(4, date);
+         ps.setString(5, priority);
          ps.executeUpdate();
       } catch (SQLException e) {
          e.printStackTrace();
@@ -39,11 +40,11 @@ public class TodoService {
    public List<Todo> retrieveTodos (UUID uuid) throws SQLException {
       List<Todo> todos = new ArrayList<>();
       try {
-         PreparedStatement ps = connection.prepareStatement("SELECT id, name, category, date FROM list WHERE uuid = ?");
+         PreparedStatement ps = connection.prepareStatement("SELECT id, name, category, date, priority FROM list WHERE uuid = ?");
          ps.setObject(1, uuid);
          ResultSet rs = ps.executeQuery();
          while (rs.next()) {
-            Todo todo = new Todo(rs.getInt("id"), rs.getString("name"), rs.getString("category"), rs.getString("date"));
+            Todo todo = new Todo(rs.getInt("id"), rs.getString("name"), rs.getString("category"), rs.getString("date"), rs.getString("priority"));
             todos.add(todo);
          }
       } catch (SQLException throwables) {
@@ -52,25 +53,24 @@ public class TodoService {
       return todos;
    }
 
-   public void deleteTodo (UUID uuid, Integer idValueOfTodo) {
+   public void deleteTodo (int id) {
       try {
-         PreparedStatement ps = connection.prepareStatement("DELETE FROM list WHERE id = ? AND uuid=?");
-         ps.setObject(1, idValueOfTodo);
-         ps.setObject(2, uuid);
+         PreparedStatement ps = connection.prepareStatement("DELETE FROM list WHERE id = ?");
+         ps.setObject(1, id);
          ps.executeUpdate();
       } catch (SQLException e) {
          e.printStackTrace();
       }
    }
 
-   public void editTodo (String description, String category, String date, int id, UUID uuid) {
+   public void editTodo (Todo todo) {
       try {
-         PreparedStatement ps = connection.prepareStatement("UPDATE list SET name = ?, category = ?, date = ? WHERE id = ? AND uuid = ?");
-         ps.setString(1, description);
-         ps.setString(2, category);
-         ps.setString(3, date);
-         ps.setInt(4, id);
-         ps.setObject(5, uuid);
+         PreparedStatement ps = connection.prepareStatement("UPDATE list SET name = ?, category = ?, date = ?, priority = ? WHERE id = ?");
+         ps.setString(1, todo.getDescription());
+         ps.setString(2, todo.getCategory());
+         ps.setString(3, todo.getDate());
+         ps.setString(4, todo.getPriority());
+         ps.setInt(4, todo.getId());
          ps.executeUpdate();
       } catch (SQLException e) {
          e.printStackTrace();

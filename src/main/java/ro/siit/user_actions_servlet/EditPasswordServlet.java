@@ -1,7 +1,5 @@
-package ro.siit.user_actions;
+package ro.siit.user_actions_servlet;
 
-import ro.siit.login.CredentialsValidator;
-import ro.siit.model.User;
 import ro.siit.service.UserService;
 
 import javax.servlet.ServletException;
@@ -10,15 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.UUID;
 
 
-@WebServlet(urlPatterns = "/deleteuser.do")
-public class DeleteUserServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/pwd.do")
+public class EditPasswordServlet extends HttpServlet {
 
-
-   private final CredentialsValidator credentialsValidator = new CredentialsValidator();
    private final UserService userService = new UserService();
-   User user;
 
    @Override
    public void init () throws ServletException {
@@ -27,18 +23,21 @@ public class DeleteUserServlet extends HttpServlet {
 
    @Override
    protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      request.getRequestDispatcher("/jsps/deleteform.jsp").forward(request, response);
+      request.getRequestDispatcher("/jsps/pwdform.jsp").forward(request, response);
 
    }
 
    @Override
    protected void doPost (HttpServletRequest request, HttpServletResponse response)
            throws IOException, ServletException {
-      String email = request.getParameter("Email");
+      String password = request.getParameter("Password");
+      String email = (String) request.getSession().getAttribute("Email");
 
-      userService.deleteUser(email);
+      UUID uuidOfLoggedUser = userService.getUserIDFromDB(email);
+
+      userService.updatePassword(uuidOfLoggedUser, password);
 
       request.getRequestDispatcher("/jsps/loginpage.jsp").forward(request, response);
-      request.setAttribute("error", "Account deleted.");
+      request.setAttribute("error", "Password updated. Use the new password to log in.");
    }
 }

@@ -2,7 +2,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
 
-<!doctype html>
 <html lang="en">
 <head>
     <!-- Required meta tags -->
@@ -32,11 +31,8 @@
                 </button>
                 </br>
                 </br>
-                <div class="row">
-                <div class="alert alert-danger alert-dismissible fade show" style="display:block" name="error">
-                			 <c:out value = "${error}"/>
-                </div>
-                </div>
+                <button type="button" class="btn btn-large btn-block btn-primary" disabled style="display: <c:out value = "${requestScope.display}"/>">
+                <c:out value = "${requestScope.error}"/></button>
             </div>
     </div>
 </div>

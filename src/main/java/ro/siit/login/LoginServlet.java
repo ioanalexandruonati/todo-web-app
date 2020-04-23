@@ -30,12 +30,15 @@ public class LoginServlet extends HttpServlet {
 
 	@Override
 	protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getSession().removeAttribute("authenticated");
+		request.setAttribute("display", "none");
 		request.getRequestDispatcher("/jsps/loginpage.jsp").forward(request, response);
 
 	}
 	@Override
 	protected void doPost (HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
+
            String email = request.getParameter("Email");
            String password = request.getParameter("Password");
 
@@ -44,14 +47,17 @@ public class LoginServlet extends HttpServlet {
            UUID uuidOfLoggedUser = userService.getUserIDFromDB(email);
 
            if (authenticatedUser != null && uuidOfLoggedUser != null) {
-              request.getSession().setAttribute("Email", email);
+
+		   request.getSession().setAttribute("authenticated", true);
+		   request.getSession().setAttribute("Email", email);
 		   request.getSession().setAttribute("authenticatedUser", authenticatedUser);
 		   request.getSession().setAttribute("uuid", uuidOfLoggedUser);
 		   response.sendRedirect("todo.do");
 
-           } else {
-              request.getRequestDispatcher("/jsps/loginpage.jsp").forward(request, response);
-              request.setAttribute("error", "Username/password combination incorrect or user does not exist. Please try again or sign up.");
-           }
+	   } else {
+		   request.setAttribute("error", "Username/password combination incorrect or user does not exist. Please try again or sign up.");
+		   request.setAttribute("display", "block");
+		   request.getRequestDispatcher("/jsps/loginpage.jsp").forward(request, response);
+	   }
         }
 }

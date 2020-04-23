@@ -1,7 +1,5 @@
-package ro.siit.user_actions;
+package ro.siit.user_actions_servlet;
 
-import ro.siit.login.CredentialsValidator;
-import ro.siit.model.User;
 import ro.siit.service.UserService;
 
 import javax.servlet.ServletException;

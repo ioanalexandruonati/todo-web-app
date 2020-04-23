@@ -8,21 +8,40 @@ public class Todo {
 
    private String description;
 
-   private final String date;
+   private String date;
 
-   private final Integer idOfTodo;
+   private String priority;
+
+   private int id;
 
 
-   public Todo (int idOfTodo, String description, String category, String date) {
+   public Todo (int id, String description, String category, String date, String priority) {
       super();
       this.description = description;
       this.category = category;
       this.date = date;
-      this.idOfTodo = idOfTodo;
+      this.id = id;
+      this.priority = priority;
    }
 
-   public Integer getIdOfTodo () {
-      return idOfTodo;
+   public String getPriority () {
+      return priority;
+   }
+
+   public void setPriority (String priority) {
+      this.priority = priority;
+   }
+
+   public void setDate (String date) {
+      this.date = date;
+   }
+
+   public int getId () {
+      return id;
+   }
+
+   public void setId (int id) {
+      this.id = id;
    }
 
    public String getDate () {

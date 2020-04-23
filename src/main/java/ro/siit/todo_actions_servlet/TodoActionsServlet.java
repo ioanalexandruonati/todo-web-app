@@ -1,7 +1,6 @@
-package ro.siit.servlet;
+package ro.siit.todo_actions_servlet;
 
 import ro.siit.model.Todo;
-import ro.siit.model.User;
 import ro.siit.service.TodoService;
 
 import javax.servlet.ServletException;
@@ -36,8 +35,8 @@ public class TodoActionsServlet extends HttpServlet {
                List<Todo> todoList = todoService.retrieveTodos(uuid);
                for (Todo todo : todoList
                ) {
-                  int idValueOfTodo = todo.getIdOfTodo();
-                  todoService.deleteTodo(uuid, idValueOfTodo);
+                  int id = todo.getId();
+                  todoService.deleteTodo(id);
                   response.sendRedirect("todo.do");
                   return;
                }
@@ -49,6 +48,13 @@ public class TodoActionsServlet extends HttpServlet {
             request.getRequestDispatcher("/jsps/add.jsp").forward(request, response);
             break;
          case "edit":
+            String description = request.getParameter("description");
+            String category = request.getParameter("category");
+            String date = request.getParameter("date");
+            String priority = request.getParameter("priority");
+            int id = Integer.parseInt(request.getParameter("id"));
+            Todo todoToEdit = new Todo(id, description, category, date, priority);
+            request.setAttribute("todoToEdit", todoToEdit);
             request.getRequestDispatcher("/jsps/edit.jsp").forward(request, response);
          default:
             uuid = (UUID) (request.getSession().getAttribute("uuid"));
@@ -72,15 +78,16 @@ public class TodoActionsServlet extends HttpServlet {
             String description = request.getParameter("description");
             String category = request.getParameter("category");
             String date = request.getParameter("date");
-            todoService.addTodoToDB(description, category, uuid, date);
+            String priority = request.getParameter("priority");
+            todoService.addTodoToDB(description, category, uuid, date, priority);
             break;
          case "edit":
-            uuid = (UUID) (request.getSession().getAttribute("uuid"));
             String newDescription = request.getParameter("description");
             String newCategory = request.getParameter("category");
             String newDate = request.getParameter("date");
-            int idValueOfTodo = Integer.parseInt(request.getParameter("id"));
-            todoService.editTodo(newDescription, newCategory, newDate, idValueOfTodo, uuid);
+            String newPriority = request.getParameter("priority");
+            int id = Integer.parseInt(request.getParameter("id"));
+            todoService.editTodo(new Todo(id, newDescription, newCategory, newDate, newPriority));
             break;
       }
       UUID uuid = (UUID) (request.getSession().getAttribute("uuid"));
