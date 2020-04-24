@@ -1,16 +1,17 @@
 package ro.siit.model;
 
+
 import java.util.UUID;
 
 public class User {
    private final UUID id;
-   private String email;
-   private String pwd;
+   private final String email;
+   private final String hashedPwd;
 
-   public User (UUID uuid, String username, String pwd) {
+   public User (UUID uuid, String username, String hashedPwd) {
       this.id = UUID.randomUUID();
       this.email = username;
-      this.pwd = pwd;
+      this.hashedPwd = hashedPwd;
    }
 
    public UUID getId () {
@@ -21,15 +22,8 @@ public class User {
       return email;
    }
 
-   public void setEmail (String username) {
-      this.email = username;
-   }
-
    public String getPwd () {
-      return pwd;
+      return hashedPwd;
    }
 
-   public void setPwd (String passwd) {
-      this.pwd = passwd;
-   }
 }

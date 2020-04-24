@@ -1,5 +1,6 @@
 package ro.siit.user_actions_servlet;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import ro.siit.login.CredentialsValidator;
 import ro.siit.model.User;
 import ro.siit.service.UserService;
@@ -20,6 +21,7 @@ public class AddUserServlet extends HttpServlet {
    User user;
    private final CredentialsValidator credentialsValidator = new CredentialsValidator();
    private final UserService userService = new UserService();
+   BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
    @Override
    public void init () throws ServletException {
@@ -35,17 +37,24 @@ public class AddUserServlet extends HttpServlet {
    @Override
    protected void doPost (HttpServletRequest request, HttpServletResponse response)
            throws IOException, ServletException {
+
       String email = request.getParameter("Email");
       String pwd = request.getParameter("Password");
-      String pwdCheckIfIdentical = request.getParameter("ConfirmPassword");
+
+      String hashedPwd = passwordEncoder.encode(pwd);
+
+      credentialsValidator.checkCredentials(email, hashedPwd);
 
       if (credentialsValidator != null) {
-         request.getRequestDispatcher("/jsps/loginpage.jsp").forward(request, response);
          request.setAttribute("error", "Username/password already taken. Please try logging in.");
-      } else if (pwd == pwdCheckIfIdentical) {
-         user = new User(UUID.randomUUID(), email, pwd);
+         request.setAttribute("display", "block");
+         request.getRequestDispatcher("/jsps/loginpage.jsp").forward(request, response);
+      } else {
+
+         user = new User(UUID.randomUUID(), email, hashedPwd);
          userService.addUser(user);
          request.setAttribute("error", "Account created. Please log in.");
+         request.setAttribute("display", "block");
          request.getRequestDispatcher("/jsps/loginpage.jsp").forward(request, response);
       }
    }

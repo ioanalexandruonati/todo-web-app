@@ -1,5 +1,6 @@
 package ro.siit.login;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import ro.siit.model.User;
 import ro.siit.service.UserService;
 
@@ -20,6 +21,8 @@ public class LoginServlet extends HttpServlet {
 
 	private UserService userService;
 
+	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
 
 	@Override
 	public void init () throws ServletException {
@@ -39,25 +42,24 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost (HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 
-           String email = request.getParameter("Email");
-           String password = request.getParameter("Password");
+		String email = request.getParameter("Email");
+		String password = request.getParameter("Password");
 
-           User authenticatedUser = credentialsValidator.checkCredentials(email, password);
+		UUID uuidOfLoggedUser = userService.getUserIDFromDB(email);
 
-           UUID uuidOfLoggedUser = userService.getUserIDFromDB(email);
+		User authenticatedUser = credentialsValidator.checkCredentials(email, password);
 
-           if (authenticatedUser != null && uuidOfLoggedUser != null) {
+		if (authenticatedUser != null) {
 
-		   request.getSession().setAttribute("authenticated", true);
-		   request.getSession().setAttribute("Email", email);
-		   request.getSession().setAttribute("authenticatedUser", authenticatedUser);
-		   request.getSession().setAttribute("uuid", uuidOfLoggedUser);
-		   response.sendRedirect("todo.do");
-
-	   } else {
-		   request.setAttribute("error", "Username/password combination incorrect or user does not exist. Please try again or sign up.");
-		   request.setAttribute("display", "block");
-		   request.getRequestDispatcher("/jsps/loginpage.jsp").forward(request, response);
-	   }
+			request.getSession().setAttribute("authenticated", true);
+			request.getSession().setAttribute("Email", email);
+			request.getSession().setAttribute("authenticatedUser", authenticatedUser);
+			request.getSession().setAttribute("uuid", uuidOfLoggedUser);
+			response.sendRedirect("todo.do");
+		} else {
+			request.setAttribute("error", "Username/password combination incorrect or user does not exist. Please try again or sign up.");
+			request.setAttribute("display", "block");
+			request.getRequestDispatcher("/jsps/loginpage.jsp").forward(request, response);
+		}
         }
 }

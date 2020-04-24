@@ -32,12 +32,11 @@
 				<span class="input-group-addon"><i class="fa fa-lock"></i></span>
 				<input type="password" class="form-control" name="Password" placeholder="Password" required="required">
 				</br>
-				</br>
-				<input type="password" class="form-control" name="ConfirmPassword" placeholder="Confirm Password" required="required">
+
 			</div>
         </div>
         </br>
-        <input name="add" type="submit" class="btn btn-success btn-block btn-large" value="Sumbit"/>
+        <input name="add" type="submit" class="btn btn-success btn-block btn-large" value="Submit"/>
     </form>
 	<div class="text-center"><a href="login.do"> Already have an account? </br> Login here...</a></div>
 </div>

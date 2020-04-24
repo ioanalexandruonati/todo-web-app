@@ -1,5 +1,6 @@
 package ro.siit.user_actions_servlet;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import ro.siit.service.UserService;
 
 import javax.servlet.ServletException;
@@ -15,6 +16,7 @@ import java.util.UUID;
 public class EditPasswordServlet extends HttpServlet {
 
    private final UserService userService = new UserService();
+   BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
    @Override
    public void init () throws ServletException {
@@ -33,9 +35,11 @@ public class EditPasswordServlet extends HttpServlet {
       String password = request.getParameter("Password");
       String email = (String) request.getSession().getAttribute("Email");
 
+      String hashedPwd = passwordEncoder.encode(password);
+
       UUID uuidOfLoggedUser = userService.getUserIDFromDB(email);
 
-      userService.updatePassword(uuidOfLoggedUser, password);
+      userService.updatePassword(uuidOfLoggedUser, hashedPwd);
 
       request.getRequestDispatcher("/jsps/loginpage.jsp").forward(request, response);
       request.setAttribute("error", "Password updated. Use the new password to log in.");

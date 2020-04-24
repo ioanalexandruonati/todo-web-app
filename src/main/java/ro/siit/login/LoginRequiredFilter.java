@@ -1,6 +1,5 @@
 package ro.siit.login;
 
-import ro.siit.model.User;
 
 import java.io.IOException;
 
@@ -20,7 +19,6 @@ public class LoginRequiredFilter implements Filter {
 
    @Override
    public void destroy () {
-
    }
 
    @Override

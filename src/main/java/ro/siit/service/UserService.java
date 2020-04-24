@@ -1,14 +1,12 @@
 package ro.siit.service;
 
-import ro.siit.model.Todo;
 import ro.siit.model.User;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 public class UserService {
+
 
    private Connection connection;
 
@@ -70,10 +68,10 @@ public class UserService {
       }
    }
 
-   public void updatePassword (UUID uuid, String password) {
+   public void updatePassword (UUID uuid, String hashedPwd) {
       try {
          PreparedStatement ps = connection.prepareStatement("UPDATE login SET pwd = ? WHERE id = ?");
-         ps.setString(1, password);
+         ps.setString(1, hashedPwd);
          ps.setObject(2, uuid);
          ps.executeUpdate();
       } catch (SQLException e) {
