@@ -28,10 +28,12 @@ When a user enters the email and password associated with the account, in the lo
 
 In the back, the credentials (email, password) are checked against the existing values in the database and if a match exists, then a new instance of that user, including the fields email, password and uuid is created, if not the user is redirected to the login and asked to retry or create an account. This new instance with all its fields, is set/put on session.
 
-After the step above, when the user gets redirected to the hompeage, the user can vizualise the todo items associated with its uuid from the table list from the DB, the user can add or delete a todo list item.
+After the step above, when the user gets redirected to the homepage, the user can visualise the todo items associated with its uuid from the table list from the DB, the user can add or delete a todo list item.
 
 Listing Todo:
-Using the uuid of the particular user that is on session (is logged in), when the user is redirected to the hompage, the items from the list table in the DB, that are associated with its uuid (the uuid of the user on session matches the uuid in the id column in the list table), are querried and for each entry where the uuid in the id column, matches the uuid of the user on session, a Todo object is created (that has String type fields: name & category & due date) and then each one of the Todo objects is added to a List<Todo>. This list is iterated through and each Todo item is displayed.
+-> Using the uuid of the particular user that is on session (is logged in), when the user is redirected to the homepage, the items from the list table in the DB, that are associated with its uuid (the uuid of the user on session matches the uuid in the id column in the list table), are querried and for each entry where the uuid in the id column, matches the uuid of the user on session, a Todo object is created (that has String type fields: name & category & due date) and then each one of the Todo objects is added to a List<Todo>. This list is iterated through and each Todo item is displayed.
+-> The table can be sorted, by clicking on each column name;
+-> The user can search in the table, using the search box available at the top, to quickly identify a Todo, by the details/text available in the "Description" column.
 
 Adding Todo:
 Using the uuid of the particular user that is on session (is logged in), when the user clicks on the Add Todo button, and after the user inputs the name of the item and category, the app adds the strings in the columns name & category & date and the user uuid to the id column in the list table in the database.

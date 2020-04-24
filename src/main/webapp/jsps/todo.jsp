@@ -26,23 +26,23 @@
 			<p> <strong>Your todos are:</strong></p>
 
 			</br>
-		<table id="myTable" class="table table-striped table-borderless">
-		<tr class="header">
-		<th>ID</th>
-		<th>Description</th>
-		<th>Category</th>
-		<th>Due date</th>
-		<th>Priority</th>
+		<table id="myTable" class="table table-sm table-striped table-borderless rounded sortable">
+		<tr class="header rounded">
+		<th >ID</th>
+		<th >Description</th>
+		<th >Category</th>
+		<th >Due date</th>
+		<th >Priority</th>
 		<th class="text-center">Actions</th>
 		</tr>
 		       <c:forEach items="${todos}" var="todo">
-		        <tr>
-		          <td>${todo.id}</td>
-		          <td>${todo.description}</td>
-		          <td>${todo.category}</td>
-		          <td>${todo.date}</td>
-		          <td>${todo.priority}</td>
-		          <td class="text-center" >
+		        <tr class="rounded">
+		          <td class="rounded" >${todo.id}</td>
+		          <td class="rounded" >${todo.description}</td>
+		          <td class="rounded" >${todo.category}</td>
+		          <td class="rounded" >${todo.date}</td>
+		          <td class="rounded" id="priority" sorttable_customkey="sort();" >${todo.priority}</td>
+		          <td class="text-center rounded">
 		          <a class="btn btn-danger btn-lg active" onclick="window.location.href='?action=delete&id=${todo.id}'">Delete</a>
 		          <a class="btn btn-info btn-lg active" onclick="window.location.href='?action=edit&id=${todo.id}'">Edit</a>
 		          </td>

@@ -31,7 +31,7 @@
                 </button>
                 </br>
                 </br>
-                <button type="button" class="btn btn-large btn-block btn-primary" disabled style="display: <c:out value = "${requestScope.display}"/>">
+                <button type="button" class="btn btn-large btn-block btn-danger" disabled style="display: <c:out value = "${requestScope.display}"/>">
                 <c:out value = "${requestScope.error}"/></button>
             </div>
     </div>
