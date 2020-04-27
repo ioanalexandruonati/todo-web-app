@@ -4,9 +4,9 @@
 
 CREATE TABLE public.login
 (
-    id    uuid NOT NULL,
-    email character varying(32) COLLATE pg_catalog."default",
-    pwd   character varying(64) COLLATE pg_catalog."default",
+    id    uuid                                               NOT NULL,
+    email character varying(60) COLLATE pg_catalog."default" NOT NULL,
+    pwd   text COLLATE pg_catalog."default"                  NOT NULL,
     CONSTRAINT login_pkey PRIMARY KEY (id),
     CONSTRAINT "id user = id" FOREIGN KEY (id)
         REFERENCES public.login (id) MATCH FULL
