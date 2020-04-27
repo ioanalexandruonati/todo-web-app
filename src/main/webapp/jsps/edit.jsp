@@ -22,6 +22,14 @@
                          <label>Due date:</label> <input name="date" type="text"
                          class="form-control" /> <BR />
                          </fieldset>
+                         <fieldset class="form-group">
+                         <label>Priority: &nbsp;</label>
+                              <select name="priority">
+                                  <option value="High">High</option>
+                                  <option value="Medium">Medium</option>
+                                  <option value="Low">Low</option>
+                                  </select>
+                         </fieldset>
         				</br>
         				<a href="?action=edit">
                 		<input name="add" type="submit" class="btn btn-info" value="Submit" />
