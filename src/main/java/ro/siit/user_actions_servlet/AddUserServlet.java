@@ -1,6 +1,10 @@
 package ro.siit.user_actions_servlet;
 
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import ro.siit.login.CredentialsValidator;
 import ro.siit.model.User;
 import ro.siit.service.UserService;
@@ -21,7 +25,9 @@ public class AddUserServlet extends HttpServlet {
    User user;
    private final CredentialsValidator credentialsValidator = new CredentialsValidator();
    private final UserService userService = new UserService();
-   BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+   static final Logger logger = LogManager.getLogger(CredentialsValidator.class);
+
 
    @Override
    public void init () throws ServletException {
@@ -41,18 +47,21 @@ public class AddUserServlet extends HttpServlet {
       String email = request.getParameter("Email");
       String pwd = request.getParameter("Password");
 
-      String hashedPwd = passwordEncoder.encode(pwd);
-
-      credentialsValidator.checkCredentials(email, hashedPwd);
+      credentialsValidator.checkCredentials(email, pwd);
 
       if (credentialsValidator != null) {
+
          request.setAttribute("error", "Username/password already taken. Please try logging in.");
          request.setAttribute("display", "block");
          request.getRequestDispatcher("/jsps/loginpage.jsp").forward(request, response);
+         logger.log(Level.TRACE, "error in add user servlet");
       } else {
 
-         user = new User(UUID.randomUUID(), email, hashedPwd);
+         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+         String hashedPassword = passwordEncoder.encode(pwd);
+         user = new User(UUID.randomUUID(), email, hashedPassword);
          userService.addUser(user);
+
          request.setAttribute("error", "Account created. Please log in.");
          request.setAttribute("display", "block");
          request.getRequestDispatcher("/jsps/loginpage.jsp").forward(request, response);

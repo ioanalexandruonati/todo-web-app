@@ -7,8 +7,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ro.siit.webapp.simpleTODOListapp" />
-        <module name="ro.siit.webapp" />
         <module name="SimpleTODOListWebApp" />
+        <module name="ro.siit.webapp" />
+        <module name="most_recent" />
       </profile>
     </annotationProcessing>
   </component>

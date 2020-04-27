@@ -1,17 +1,15 @@
 package ro.siit.login;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import ro.siit.model.User;
 import ro.siit.service.UserService;
-
-import java.io.IOException;
-import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.UUID;
 
 
 @WebServlet(urlPatterns = "/login.do")
@@ -20,8 +18,6 @@ public class LoginServlet extends HttpServlet {
 	private CredentialsValidator credentialsValidator;
 
 	private UserService userService;
-
-	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 
 	@Override
@@ -56,6 +52,7 @@ public class LoginServlet extends HttpServlet {
 			request.getSession().setAttribute("authenticatedUser", authenticatedUser);
 			request.getSession().setAttribute("uuid", uuidOfLoggedUser);
 			response.sendRedirect("todo.do");
+
 		} else {
 			request.setAttribute("error", "Username/password combination incorrect or user does not exist. Please try again or sign up.");
 			request.setAttribute("display", "block");

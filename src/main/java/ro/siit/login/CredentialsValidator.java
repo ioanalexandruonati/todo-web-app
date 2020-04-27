@@ -1,15 +1,21 @@
 package ro.siit.login;
 
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import ro.siit.model.User;
 
 import java.sql.*;
 import java.util.UUID;
 
+
 public class CredentialsValidator {
 
    private Connection connection;
-   BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+   static final Logger logger = LogManager.getLogger(CredentialsValidator.class);
 
 
    public CredentialsValidator () {
@@ -34,18 +40,23 @@ public class CredentialsValidator {
 //      }
 
    public User checkCredentials (String email, String password) {
+      PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+      String hashedPassword = passwordEncoder.encode(password);
 
       try {
-         PreparedStatement ps = connection.prepareStatement("SELECT id, email, pwd FROM login WHERE pwd = ?");
-         ps.setString(1, passwordEncoder.encode(password));
+         PreparedStatement ps = connection.prepareStatement("SELECT id, email, pwd FROM login WHERE email = ? AND pwd = ?");
+         ps.setString(1, email);
+         ps.setString(2, hashedPassword);
 
          ResultSet rs = ps.executeQuery();
 
          if (rs.next()) {
             return new User(UUID.fromString(String.valueOf(rs.getObject(1))),
                     rs.getString(2), rs.getString(3));
+         } else {
+            logger.log(Level.TRACE, "Reached else in credentials validator");
+            return null;
          }
-
       } catch (SQLException e) {
          e.printStackTrace();
       }

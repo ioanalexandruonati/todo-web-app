@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="DEBUG">
     <Properties>
-        <Property name="log-path">target</Property>
+        <Property name="log-path">logger</Property>
     </Properties>
     <Appenders>
         <RollingFile name="RollingFileInfo" fileName="${log-path}/exceptions-info.log"
@@ -27,15 +27,15 @@
                 <pattern>%d{dd/MMM/yyyy HH:mm:ss,SSS}- %c{1}: %m%n</pattern>
             </PatternLayout>
             <Policies>
-                <SizeBasedTriggeringPolicy size="1000 KB"/>
+                <SizeBasedTriggeringPolicy size="1 KB"/>
             </Policies>
             <DefaultRolloverStrategy max="4"/>
         </RollingFile>
     </Appenders>
     <Loggers>
-        <Root level="debug" additivity="false">
-            <AppenderRef ref="RollingFileInfo" level="debug"/>
-            <AppenderRef ref="RollingFileError" level="error"/>
+        <Root level="all" additivity="false">
+            <AppenderRef ref="RollingFileInfo" level="all"/>
+            <AppenderRef ref="RollingFileError" level="trace"/>
         </Root>
     </Loggers>
 </Configuration>
