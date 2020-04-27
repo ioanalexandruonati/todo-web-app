@@ -26,7 +26,7 @@ How does it work:
 
 When a user enters the email and password associated with the account, in the login page, he/she is redirected to the homepage of the app.
 
-In the back, the credentials (email, password) are checked against the existing values in the database and if a match exists, then a new instance of that user, including the fields email, password and uuid is created, if not the user is redirected to the login and asked to retry or create an account. This new instance with all its fields, is set/put on session.
+In the back, the credentials (email, password) are checked against the existing email value and the hashed value of the password, in the database and if a match exists, then a new instance of that user, including the fields email, password and uuid is created, if not the user is redirected to the login and asked to retry or create an account. This new instance with all its fields, is set/put on session.
 
 After the step above, when the user gets redirected to the homepage, the user can visualise the todo items associated with its uuid from the table list from the DB, the user can add or delete a todo list item.
 
