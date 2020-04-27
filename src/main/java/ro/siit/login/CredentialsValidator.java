@@ -15,6 +15,8 @@ public class CredentialsValidator {
 
    private Connection connection;
 
+   PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
    static final Logger logger = LogManager.getLogger(CredentialsValidator.class);
 
 
@@ -40,17 +42,15 @@ public class CredentialsValidator {
 //      }
 
    public User checkCredentials (String email, String password) {
-      PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-      String hashedPassword = passwordEncoder.encode(password);
+
 
       try {
-         PreparedStatement ps = connection.prepareStatement("SELECT id, email, pwd FROM login WHERE email = ? AND pwd = ?");
+         PreparedStatement ps = connection.prepareStatement("SELECT id, email, pwd FROM login WHERE email = ?");
          ps.setString(1, email);
-         ps.setString(2, hashedPassword);
 
          ResultSet rs = ps.executeQuery();
 
-         if (rs.next()) {
+         if (rs.next() && passwordEncoder.matches(password, rs.getString("pwd"))) {
             return new User(UUID.fromString(String.valueOf(rs.getObject(1))),
                     rs.getString(2), rs.getString(3));
          } else {

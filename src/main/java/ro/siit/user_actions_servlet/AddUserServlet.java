@@ -47,14 +47,15 @@ public class AddUserServlet extends HttpServlet {
       String email = request.getParameter("Email");
       String pwd = request.getParameter("Password");
 
-      credentialsValidator.checkCredentials(email, pwd);
+      User user = credentialsValidator.checkCredentials(email, pwd);
 
-      if (credentialsValidator != null) {
+      if (user != null) {
 
          request.setAttribute("error", "Username/password already taken. Please try logging in.");
          request.setAttribute("display", "block");
          request.getRequestDispatcher("/jsps/loginpage.jsp").forward(request, response);
          logger.log(Level.TRACE, "error in add user servlet");
+
       } else {
 
          PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
