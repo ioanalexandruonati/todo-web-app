@@ -30,17 +30,6 @@ public class CredentialsValidator {
    }
 
 
-//  When we will connect directly to heroku.
-
-//   public CredentialsValidator () {
-//         try {
-//            Class.forName("org.postgresql.Driver");
-//            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/dagk3c0os0qu7v?user=ciklwxejzwyibq&password=5abbc2b1bab4f067c16a5384b9d94829532d21c47e22dcf3c80e022d1c3998a8");
-//         } catch (ClassNotFoundException | SQLException e) {
-//            e.printStackTrace();
-//         }
-//      }
-
    public User checkCredentials (String email, String password) {
 
 

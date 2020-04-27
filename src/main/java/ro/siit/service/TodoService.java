@@ -14,6 +14,7 @@ public class TodoService {
 
    private Connection connection;
 
+
    public TodoService () {
       try {
          Class.forName("org.postgresql.Driver");
@@ -22,6 +23,7 @@ public class TodoService {
          e.printStackTrace();
       }
    }
+
 
    public void addTodoToDB (String name, String category, UUID uuid, String date, String priority) {
       try {
