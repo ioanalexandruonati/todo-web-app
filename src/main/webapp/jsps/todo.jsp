@@ -3,7 +3,7 @@
 
 
 			</br>
-			<div class="container-fluid">
+			<div class="container-fluid maincont">
 
 				<h2>Welcome ${Email}</h2>
 

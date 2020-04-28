@@ -1,0 +1,8 @@
+@media screen and (max-width:480px) {
+
+    .maincont
+    {
+    width: 460px;
+    overflow-y: auto;  /* Makes the scrollbar appear when it should be scrollable */
+    }
+}
