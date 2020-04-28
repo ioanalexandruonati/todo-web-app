@@ -45,7 +45,7 @@ public class LoginServlet extends HttpServlet {
 
 		User authenticatedUser = credentialsValidator.checkCredentials(email, password);
 
-		if (authenticatedUser != null) {
+		if (authenticatedUser != null && uuidOfLoggedUser != null) {
 
 			request.getSession().setAttribute("authenticated", true);
 			request.getSession().setAttribute("Email", email);
