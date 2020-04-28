@@ -5,12 +5,12 @@
   <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>webappproject</artifactId>
+    <artifactId>todo-web-app</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
 
-    <name>webappproject</name>
+    <name>todo-web-app</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 
@@ -95,13 +95,16 @@
   </dependencies>
 
   <build>
-    <finalName>webappproject</finalName>
+    <finalName>todo-web-app</finalName>
       <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
           <plugins>
               <plugin>
                   <groupId>com.heroku.sdk</groupId>
                   <artifactId>heroku-maven-plugin</artifactId>
                   <version>3.0.2</version>
+                  <configuration>
+                    <appName>siit10-todo-list</appName>
+                  </configuration>
               </plugin>
               <plugin>
                   <artifactId>maven-clean-plugin</artifactId>
