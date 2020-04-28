@@ -1,4 +1,10 @@
-@media screen and (max-width:480px) {
+
+
+.maincont{
+}
+
+
+@media (max-width:480px) {
 
     .maincont
     {
