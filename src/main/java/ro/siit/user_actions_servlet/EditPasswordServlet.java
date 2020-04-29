@@ -33,11 +33,11 @@ public class EditPasswordServlet extends HttpServlet {
    protected void doPost (HttpServletRequest request, HttpServletResponse response)
            throws IOException, ServletException {
       String password = request.getParameter("Password");
-      String email = (String) request.getSession().getAttribute("Email");
+      String username = (String) request.getSession().getAttribute("Username");
 
       String generatedSecuredPasswordHash = BCrypt.hashpw(password, BCrypt.gensalt(12));
 
-      UUID uuidOfLoggedUser = userService.getUserIDFromDB(email);
+      UUID uuidOfLoggedUser = userService.getUserIDFromDB(username);
 
       userService.updatePassword(uuidOfLoggedUser, generatedSecuredPasswordHash);
 

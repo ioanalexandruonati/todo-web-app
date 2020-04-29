@@ -3,9 +3,9 @@
 
 
 			</br>
-			<div class="container-fluid maincont">
+			<div class="container-fluid">
 
-				<h2>Welcome ${Email}</h2>
+				<h2>Welcome ${Username}</h2>
 
 				</br>
 
@@ -13,7 +13,7 @@
 
 			<div class="row">
 
-			<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for todo..." size="100">
+			<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for todo..." size="85">
 
 			</div>
 

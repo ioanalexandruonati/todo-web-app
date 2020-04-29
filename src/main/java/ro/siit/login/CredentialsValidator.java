@@ -18,30 +18,18 @@ public class CredentialsValidator {
    PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
    static final Logger logger = LogManager.getLogger(CredentialsValidator.class);
-
-//   private Connection connection;
-
-//   public CredentialsValidator () {
-//      try {
-//         Class.forName("org.postgresql.Driver");
-//         connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/siit10?user=postgres&password=postgres");
-//      } catch (ClassNotFoundException | SQLException e) {
-//         e.printStackTrace();
-//      }
-//   }
-
-
+   
    private Connection getConnection () throws URISyntaxException, SQLException {
       String dbUrl = System.getenv("JDBC_DATABASE_URL");
       return DriverManager.getConnection(dbUrl);
    }
 
-   public User checkCredentials (String email, String password) {
+   public User checkCredentials (String username, String password) {
 
 
       try {
          PreparedStatement ps = getConnection().prepareStatement("SELECT id, email, pwd FROM login WHERE email = ?");
-         ps.setString(1, email);
+         ps.setString(1, username);
 
          ResultSet rs = ps.executeQuery();
 

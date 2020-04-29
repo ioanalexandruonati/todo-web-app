@@ -1,7 +1,9 @@
 <div class="navbar fixed-bottom navbar-light" style="background-color: #726E97;">
-
       <span class="navbar-text">
-      <a class="navbar-brand" href="https://github.com/ioanalexandruonati?tab=repositories" target="_blank">My github repos!</a></p>
+      <a class="navbar-brand" href="https://github.com/ioanalexandruonati?tab=repositories" target="_blank"> Link to
+            my github profile!&nbsp-&nbspThis is a mockup app. Please don't provide personal details as no liability is
+            taken
+      by the creator of the it.</a></p>
       </span>
 </div>
 
@@ -19,6 +21,6 @@
         crossorigin="anonymous"></script>
 <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/table.js"></script>
-</body>
 
+</body>
 </html>

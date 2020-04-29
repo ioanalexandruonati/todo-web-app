@@ -9,19 +9,6 @@ import java.util.UUID;
 
 public class UserService {
 
-//
-//   private Connection connection;
-//
-//
-//   public UserService () {
-//      try {
-//         Class.forName("org.postgresql.Driver");
-//         connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/siit10?user=postgres&password=postgres");
-//      } catch (ClassNotFoundException | SQLException e) {
-//         e.printStackTrace();
-//      }
-//   }
-
    private Connection getConnection () throws URISyntaxException, SQLException {
       String dbUrl = System.getenv("JDBC_DATABASE_URL");
       return DriverManager.getConnection(dbUrl);
@@ -39,11 +26,11 @@ public class UserService {
       }
    }
 
-   public UUID getUserIDFromDB (String email) {
+   public UUID getUserIDFromDB (String username) {
       String uuid = null;
       try {
          PreparedStatement ps = getConnection().prepareStatement("SELECT id FROM login WHERE email=?");
-         ps.setString(1, email);
+         ps.setString(1, username);
          ResultSet rs = ps.executeQuery();
          if (rs.next()) {
             uuid = rs.getString("id");
@@ -55,20 +42,20 @@ public class UserService {
       return null;
    }
 
-   public void deleteUser (String Email) {
+   public void deleteUser (String username) {
       try {
          PreparedStatement ps = getConnection().prepareStatement("DELETE FROM login WHERE email = ?");
-         ps.setObject(1, Email);
+         ps.setObject(1, username);
          ps.executeUpdate();
       } catch (SQLException | URISyntaxException e) {
          e.printStackTrace();
       }
    }
 
-   public void updateEmail (UUID uuid, String Email) {
+   public void updateEmail (UUID uuid, String username) {
       try {
          PreparedStatement ps = getConnection().prepareStatement("UPDATE login SET email = ? WHERE id = ?");
-         ps.setString(1, Email);
+         ps.setString(1, username);
          ps.setObject(2, uuid);
          ps.executeUpdate();
       } catch (SQLException | URISyntaxException e) {

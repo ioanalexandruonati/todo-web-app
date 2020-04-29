@@ -30,10 +30,10 @@ public class EditEmailServlet extends HttpServlet {
    @Override
    protected void doPost (HttpServletRequest request, HttpServletResponse response)
            throws IOException, ServletException {
-      String email = request.getParameter("Email");
-      UUID uuidOfLoggedUser = userService.getUserIDFromDB(email);
+      String username = request.getParameter("Username");
+      UUID uuidOfLoggedUser = userService.getUserIDFromDB(username);
 
-      userService.updateEmail(uuidOfLoggedUser, email);
+      userService.updateEmail(uuidOfLoggedUser, username);
 
       request.getRequestDispatcher("/jsps/loginpage.jsp").forward(request, response);
       request.setAttribute("error", "Email updated. Use the new email to log in.");

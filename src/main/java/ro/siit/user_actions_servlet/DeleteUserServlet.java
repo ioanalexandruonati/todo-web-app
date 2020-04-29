@@ -34,9 +34,9 @@ public class DeleteUserServlet extends HttpServlet {
    @Override
    protected void doPost (HttpServletRequest request, HttpServletResponse response)
            throws IOException, ServletException {
-      String email = request.getParameter("Email");
+      String username = request.getParameter("Username");
 
-      userService.deleteUser(email);
+      userService.deleteUser(username);
 
       request.getRequestDispatcher("/jsps/loginpage.jsp").forward(request, response);
       request.setAttribute("error", "Account deleted.");

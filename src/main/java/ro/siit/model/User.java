@@ -5,12 +5,12 @@ import java.util.UUID;
 
 public class User {
    private final UUID id;
-   private final String email;
+   private final String username;
    private final String hashedPwd;
 
    public User (UUID uuid, String username, String hashedPwd) {
       this.id = UUID.randomUUID();
-      this.email = username;
+      this.username = username;
       this.hashedPwd = hashedPwd;
    }
 
@@ -19,7 +19,7 @@ public class User {
    }
 
    public String getEmail () {
-      return email;
+      return username;
    }
 
    public String getPwd () {

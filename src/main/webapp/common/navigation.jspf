@@ -10,7 +10,7 @@
 			Account
 		</button>
 		<div class="dropdown-menu">
-			<a class="dropdown-item" href="email.do">Edit email</a>
+			<a class="dropdown-item" href="email.do">Edit username</a>
 			<a class="dropdown-item" href="pwd.do">Edit password</a>
 			<a class="dropdown-item" href="deleteuser.do">Delete account</a>
 		

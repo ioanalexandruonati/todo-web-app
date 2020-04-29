@@ -44,10 +44,10 @@ public class AddUserServlet extends HttpServlet {
    protected void doPost (HttpServletRequest request, HttpServletResponse response)
            throws IOException, ServletException {
 
-      String email = request.getParameter("Email");
+      String username = request.getParameter("Username");
       String pwd = request.getParameter("Password");
 
-      User user = credentialsValidator.checkCredentials(email, pwd);
+      User user = credentialsValidator.checkCredentials(username, pwd);
 
       if (user != null) {
 
@@ -60,7 +60,7 @@ public class AddUserServlet extends HttpServlet {
 
          PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
          String hashedPassword = passwordEncoder.encode(pwd);
-         user = new User(UUID.randomUUID(), email, hashedPassword);
+         user = new User(UUID.randomUUID(), username, hashedPassword);
          userService.addUser(user);
 
          request.setAttribute("error", "Account created. Please log in.");

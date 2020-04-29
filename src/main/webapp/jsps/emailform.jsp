@@ -1,8 +1,9 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-
 <%@ page isELIgnored="false" %>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,6 +16,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/formstyle.css' />"/>
 </head>
+
 <body>
 <div class="signup-form">
     <form action="email.do" method="post">
@@ -23,12 +25,13 @@
         <div class="form-group">
 			<div class="input-group">
 				<span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
-				<input type="text" class="form-control" name="Email" placeholder="New email address" required="required">
+				<input type="text" class="form-control" name="Username" placeholder="New username..." required="required">
 			</div>
         </div>
         </br>
 		<input name="add" type="submit" class="btn btn-success btn-block btn-large" value="Submit"/>
     </form>
 </div>
+
 </body>
 </html>

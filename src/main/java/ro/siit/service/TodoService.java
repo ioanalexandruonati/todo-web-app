@@ -12,19 +12,6 @@ import java.util.UUID;
 public class TodoService {
 
 
-//   private Connection connection;
-//
-//
-//   public TodoService () {
-//      try {
-//         Class.forName("org.postgresql.Driver");
-//         connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/siit10?user=postgres&password=postgres");
-//      } catch (ClassNotFoundException | SQLException e) {
-//         e.printStackTrace();
-//      }
-//   }
-//
-
    private Connection getConnection () throws URISyntaxException, SQLException {
       String dbUrl = System.getenv("JDBC_DATABASE_URL");
       return DriverManager.getConnection(dbUrl);

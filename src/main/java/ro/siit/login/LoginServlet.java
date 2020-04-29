@@ -38,17 +38,17 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost (HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 
-		String email = request.getParameter("Email");
+		String username = request.getParameter("Username");
 		String password = request.getParameter("Password");
 
-		UUID uuidOfLoggedUser = userService.getUserIDFromDB(email);
+		UUID uuidOfLoggedUser = userService.getUserIDFromDB(username);
 
-		User authenticatedUser = credentialsValidator.checkCredentials(email, password);
+		User authenticatedUser = credentialsValidator.checkCredentials(username, password);
 
 		if (authenticatedUser != null && uuidOfLoggedUser != null) {
 
 			request.getSession().setAttribute("authenticated", true);
-			request.getSession().setAttribute("Email", email);
+			request.getSession().setAttribute("Username", username);
 			request.getSession().setAttribute("authenticatedUser", authenticatedUser);
 			request.getSession().setAttribute("uuid", uuidOfLoggedUser);
 			response.sendRedirect("todo.do");

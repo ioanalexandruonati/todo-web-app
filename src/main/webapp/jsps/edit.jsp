@@ -4,7 +4,7 @@
 
 	<div class="container">
 	</br>
-		<H1>Welcome ${Email}</H1>
+		<H1>Welcome ${Username}</H1>
 		</br>
         <div>
         <p>Please edit the todo item:</p>
