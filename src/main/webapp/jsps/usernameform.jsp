@@ -20,7 +20,7 @@
 <body>
 <div class="signup-form">
     <form action="email.do" method="post">
-		<h2>Update Your Email</h2>
+		<h2>Update Your Username:</h2>
 		</br>
         <div class="form-group">
 			<div class="input-group">

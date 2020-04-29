@@ -52,7 +52,7 @@ public class UserService {
       }
    }
 
-   public void updateEmail (UUID uuid, String username) {
+   public void updateUsername (UUID uuid, String username) {
       try {
          PreparedStatement ps = getConnection().prepareStatement("UPDATE login SET email = ? WHERE id = ?");
          ps.setString(1, username);

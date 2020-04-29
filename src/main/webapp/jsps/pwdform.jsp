@@ -19,7 +19,7 @@
 <body>
 <div class="signup-form">
     <form action="pwd.do" method="post">
-		<h2>Update Your Password</h2>
+		<h2>Update Your Password:</h2>
 		</br>
         <div class="form-group">
 			<div class="input-group">

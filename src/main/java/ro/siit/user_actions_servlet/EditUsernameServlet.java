@@ -12,7 +12,7 @@ import java.util.UUID;
 
 
 @WebServlet(urlPatterns = "/email.do")
-public class EditEmailServlet extends HttpServlet {
+public class EditUsernameServlet extends HttpServlet {
 
    private final UserService userService = new UserService();
 
@@ -23,7 +23,7 @@ public class EditEmailServlet extends HttpServlet {
 
    @Override
    protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      request.getRequestDispatcher("/jsps/emailform.jsp").forward(request, response);
+      request.getRequestDispatcher("/jsps/usernameform.jsp").forward(request, response);
 
    }
 
@@ -33,7 +33,7 @@ public class EditEmailServlet extends HttpServlet {
       String username = request.getParameter("Username");
       UUID uuidOfLoggedUser = userService.getUserIDFromDB(username);
 
-      userService.updateEmail(uuidOfLoggedUser, username);
+      userService.updateUsername(uuidOfLoggedUser, username);
 
       request.getRequestDispatcher("/jsps/loginpage.jsp").forward(request, response);
       request.setAttribute("error", "Email updated. Use the new email to log in.");
