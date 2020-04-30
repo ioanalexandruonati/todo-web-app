@@ -11,15 +11,22 @@
         </br>
         <form method="POST">
         <fieldset class="form-group">
-                			<label>Description:</label> <input name="description" type="text"
-                				class="form-control" /> <BR />
+                			<label>Description:</label>
+
+                			<input name="description" type="text" class="form-control" /> <BR />
                 		</fieldset>
+                		
                 		<fieldset class="form-group">
-                			<label>Category:</label> <input name="category" type="text"
-                				class="form-control" /> <BR />
+                			<label>Category:</label>
+
+                			<input name="category" type="text" class="form-control" /> <BR />
                 		</fieldset>
         				<fieldset class="form-group">
-                         <label>Due date:</label> <input type="text" id="datepicker"> <BR />
+                         <label>Due date:</label>
+
+                         <input type="text" id="datepicker">
+
+                         <BR />
                          </fieldset>
                          <fieldset class="form-group">
                          <label>Priority: &nbsp;</label>
