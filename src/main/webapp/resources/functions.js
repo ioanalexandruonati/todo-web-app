@@ -1,4 +1,4 @@
-//Sorts the "Priority" column based on the level of priority.
+//Sorts the "Priority" column of the table based on the level of priority.
 
 function sort() {
     var todoType, customKey1, customeKey2, customeKey3;
@@ -55,3 +55,9 @@ for (var i = 0, max = allTableCells.length; i < max; i++) {
     else if (currentText == "Low")
         node.style.backgroundColor == "lemonchiffon";
 }
+
+//For the date field - jQuery:
+
+$(function () {
+    $("#datepicker").datepicker();
+});
