@@ -19,7 +19,7 @@
 	</fieldset>
 
 	<fieldset class="form-group">
-		<label>Due date:</label> <input type="text" id="datepicker"> <BR />
+		<label>Due date:</label> <input name="date" type="text" class="form-control" /> <BR />
 	</fieldset>
 
 	<fieldset class="form-group">
