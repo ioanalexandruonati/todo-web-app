@@ -56,7 +56,7 @@ for (var i = 0, max = allTableCells.length; i < max; i++) {
         node.style.backgroundColor == "lemonchiffon";
 }
 
-//Date picker/calendar:
+//Date picker/calendar (https://github.com/yui/yui3/blob/master/LICENSE.md):
 
 YUI().use('calendar', 'datatype-date', 'cssbutton', function (Y) {
 

@@ -42,7 +42,7 @@
 
                          		 <BR />
                          		 Selected date: <span id="selecteddate"></span>
-                         		 
+
                          </fieldset>
                          <fieldset class="form-group">
                          <label>Priority: &nbsp;</label>
