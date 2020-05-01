@@ -8,8 +8,8 @@
 	</button>
 	
 	
-	<div class="collapse navbar-collapse" id="collapsibleNavbar">
-		<ul class="navbar-nav">
+	<div class="collapse navbar-collapse w-100" id="collapsibleNavbar">
+		<ul class="navbar-nav w-100 justify-content-center">
 			<li class="nav-item">
 				<div class="btn-group">
 					<button class="btn btn-info btn-lg dropdown-toggle dropdown-toggle-split" type="button"
@@ -26,7 +26,7 @@
 				</div>
 			</li>
 			<li class="nav-item">
-				<ul class="nav navbar-nav navbar-right">
+				<ul class="nav navbar-nav ml-auto w-100 justify-content-end">
 					<li><a class="btn btn-info btn-lg" href="login.do">Logout</a></li>
 				</ul>
 			</li>
