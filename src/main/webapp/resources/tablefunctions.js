@@ -56,3 +56,7 @@ for (var i = 0, max = allTableCells.length; i < max; i++) {
         node.style.backgroundColor == "lemonchiffon";
 }
 
+//Date picker:
+$(function () {
+    $("#datepicker").datepicker();
+});
