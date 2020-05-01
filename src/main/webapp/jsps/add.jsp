@@ -21,7 +21,7 @@
 	<fieldset class="form-group">
 		<label>Due date:</label>
 
-		<input name="date" type="date" class="form-control" size="11" />
+		<input name="date" type="date" class="form-control" style="width:50px;" />
 
 	</fieldset>
  </br>
