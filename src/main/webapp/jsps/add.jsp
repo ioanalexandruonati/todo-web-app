@@ -24,7 +24,7 @@
 		<input name="date" type="date" class="form-control" size="11" />
 
 	</fieldset>
-
+ </br>
 	<fieldset class="form-group">
 		<label>Priority: &nbsp;</label>
 			<select name="priority">

@@ -26,8 +26,7 @@
 
                             <input name="date" type="date" class="form-control" size="11" />
 
-                         <BR />
-
+                         </br>
 
                          </fieldset>
                          <fieldset class="form-group">
