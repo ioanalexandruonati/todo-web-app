@@ -24,9 +24,25 @@
         				<fieldset class="form-group">
                          <label>Due date:</label>
 
-                         <input name="date" type="text" class="form-control" id="datepicker" size="10" />
+                         <!--
+
+                            <input name="date" type="text" class="form-control" id="datepicker" size="10" />
 
                          <BR />
+
+                         -->
+
+                         <div id="demo" class="yui3-skin-sam yui3-g"> <!-- You need this skin class -->
+
+                                    <div id="leftcolumn" class="yui3-u">
+                                       <!-- Container for the calendar -->
+                                       <div id="mycalendar"></div>
+                                    </div>
+                                  </div>
+
+                         		 <BR />
+                         		 Selected date: <span id="selecteddate"></span>
+                         		 
                          </fieldset>
                          <fieldset class="form-group">
                          <label>Priority: &nbsp;</label>
