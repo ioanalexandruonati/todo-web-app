@@ -33,26 +33,4 @@
 		</ul>
 	</div>
 </nav>
-
-<!--
-
-<div class="btn-group">
-<button class="btn btn-info btn-lg dropdown-toggle dropdown-toggle-split" type="button"
-data-toggle="dropdown"
-aria-haspopup="true" aria-expanded="false">
-Account
-</button>
-<div class="dropdown-menu">
-<a class="dropdown-item" href="email.do">Edit username</a>
-<a class="dropdown-item" href="pwd.do">Edit password</a>
-<a class="dropdown-item" href="deleteuser.do">Delete account</a>
-
-</div>
-</div>
-<ul class="nav navbar-nav navbar-right">
-<li><a class="btn btn-info btn-lg" href="login.do">Logout</a></li>
-</ul>
-
--->
-
 </nav>
