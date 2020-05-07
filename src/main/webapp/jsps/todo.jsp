@@ -28,7 +28,6 @@
 			</br>
 		<table id="myTable" class="table table-sm table-striped table-borderless rounded sortable">
 		<tr class="header rounded">
-		<th >ID</th>
 		<th >Description</th>
 		<th >Category</th>
 		<th >Due date</th>
