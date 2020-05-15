@@ -8,8 +8,9 @@
 				<h2>Welcome ${Username}</h2>
 
 				</br>
-
-				 <div class="col-9" style="overflow-y: auto; height: 700px;">
+			<div class="col-12" style="overflow-y: auto; height: 700px;">
+			<div class="row">
+			<div class="col-8" style="overflow-y: auto; height: 700px;">
 
 			<div class="row">
 
@@ -36,7 +37,6 @@
 		</tr>
 		       <c:forEach items="${todos}" var="todo">
 		        <tr class="rounded">
-		          <td class="rounded" >${todo.id}</td>
 		          <td class="rounded" >${todo.description}</td>
 		          <td class="rounded" >${todo.category}</td>
 		          <td class="rounded" >${todo.date}</td>
@@ -52,9 +52,19 @@
 		    </br>
 		    </br>
 		        <a class="btn btn-success" href="?action=add">Add New Todo</a>
+		    </div>
+
 			</div>
-			</div>
-			</div>
+			<div class="col-4" style="overflow-y: auto; height: 700px;">
+                            <div id='wrap'>
+
+                                <div id='calendar'></div>
+
+                                <div style='clear:both'></div>
+                             </div>
+            			</div>
+
+           </div>
 
 
 		<%@ include file="../common/footer.jspf"%>
