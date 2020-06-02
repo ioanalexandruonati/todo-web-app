@@ -1,4 +1,5 @@
-# todo-web-app
+# TodoList-web-app
+
 https://siit10-todo-list.herokuapp.com/
 
 ToDoList Web App:
