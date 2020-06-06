@@ -1,6 +1,6 @@
-# TodoList-web-app
+# TodoList-Web-App
 
-The app is available by accessing the following account:
+The app is available by accessing the following link:
 
 https://siit10-todo-list.herokuapp.com/
 
